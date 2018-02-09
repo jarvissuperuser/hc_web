@@ -7,6 +7,9 @@
     <script src="./w3.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./w3.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <script src="./jquery-3.3.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
     <style>
         body {
             min-width: 99vw;
@@ -20,12 +23,16 @@
         .fill {
             width: 99vw;
         }
+        
+        .eas:hover {
+            transition: all 300ms ease-out;
+        }
     </style>
 </head>
 
 <body>
     <section class="w3-section w3-container fill">
-        <img class="m12 s12 l12" src="./timthumb.php.jpg" alt="parallaxadf" />
+        <img class="w3-col m12 s12 l12 eas" src="./timthumb.php.jpg" alt="parallaxadf" />
     </section>
     <section class="w3-section w3-container w3-row">
         <div class="w3-card w3-margin w3-col l3 s2">

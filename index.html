@@ -92,6 +92,7 @@
                     var card = $(data.cards[0]).clone(true);
                     $(card).find(".title h4").text(post.title);
                     $(card).find(".content img").attr('src', post.thumbnail_images.full.url);
+                    $(card).find(".footer").html(post.excerpt);
                     //$(card)
                     var pointer = c % 3;
                     var appento = ".sec_" + pointer.toString();

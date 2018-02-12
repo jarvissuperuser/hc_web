@@ -105,9 +105,10 @@
                 var c = 0;
                 data.cards = document.querySelectorAll(".w3-card");
                 data.cards.forEach(function(card) {
-                    console.log(card);
+                    console.log(card, c);
                     $(card).find(".title h4").text(data.d.posts[c].title);
                     c = c + 1;
+
                 });
             }
         }

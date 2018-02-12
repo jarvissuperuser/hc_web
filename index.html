@@ -88,7 +88,7 @@
                 data.d.posts.forEach(post => {
                     var card = $(data.cards[0]).clone(true);
                     $(card).find(".title h4").text(post.title);
-                    $(card).find(".content img").attrib('src', post.thumbnail);
+                    $(card).find(".content img").attr('src', post.thumbnail);
                     //$(card)
                     $(".main").append(card);
                     c = c + 1;

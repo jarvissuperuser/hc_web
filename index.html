@@ -94,7 +94,8 @@
                     $(card).find(".content img").attr('src', post.thumbnail_images.full.url);
                     //$(card)
                     var pointer = c % 3;
-                    var appento = "sec_" + c.toString();
+                    var appento = ".sec_" + c.toString();
+                    console.log(appento);
                     $(appento).append(card);
                     c = c + 1;
                 });

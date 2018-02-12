@@ -106,11 +106,11 @@
                 var pr = new Promise(function(resolve, reject) {
                     $.getJSON("./hc_info.json", function(res) {
                         //console.log(res);
+                        data.d = res;
                         if (res) {
-                            data.d = res;
                             resolve(res);
                         } else {
-                            reject(console.error("Failed"));
+                            reject("Failed");
                         }
 
                     });

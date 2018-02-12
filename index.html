@@ -26,8 +26,9 @@
         }
         
         .ifill {
-            width: 100%;
-            height: 100%;
+            width: 99.99%;
+            height: 99.99%;
+            object-fit: cover;
         }
         
         .bgi {
@@ -42,7 +43,7 @@
         }
         
         .eas:hover span {
-            transform: scale(1.05, 1.05);
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -50,8 +51,8 @@
 <body>
     <section class="w3-section w3-container">
         <div class="w3-card-4 w3-col m12 s12 l12 eas fill">
-            <!-- <img class=" eas" src="./timthumb.php.jpg" alt="parallaxadf" /> -->
-            <span class="bgi ifill"></span>
+            <img class="ifill" src="./timthumb.php.jpg" alt="parallaxadf" />
+            <!-- <span class="bgi ifill"></span> -->
         </div>
 
     </section>

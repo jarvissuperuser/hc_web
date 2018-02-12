@@ -106,7 +106,8 @@
                 data.cards = document.querySelectorAll(".w3-card");
                 data.cards.forEach(function(card) {
                     console.log(card);
-                    $(card).find(".title h4").text(data.d.posts[c++].title);
+                    $(card).find(".title h4").text(data.d.posts[c].title);
+                    c = c + 1;
                 });
             }
         }

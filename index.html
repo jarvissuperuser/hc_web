@@ -103,25 +103,7 @@
         }
         $(document).ready(function() {
             try {
-                var pr = new Promise(function(resolve, reject) {
-                    $.getJSON("./hc_info.json", function(res) {
-
-                        data.d = res;
-                        if (res) {
-                            console.log(res);
-                            resolve(res);
-
-                        } else {
-                            reject("Failed");
-                        }
-
-                    });
-
-
-                });
-                pr.then(function(res) {
-                    data.do_();
-                });
+                pull();
             } catch (ex) {
                 console.log(ex);
             }
@@ -131,6 +113,7 @@
             $.getJSON("./hc_info.json", function(res) {
                 console.log(res);
                 data.d = res;
+                data.do_();
             });
         }
     </script>

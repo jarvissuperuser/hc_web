@@ -51,16 +51,16 @@
     </style>
 </head>
 
-<body>
-    <section class="w3-section w3-container">
+<body class="w3_row">
+    <section class="w3-section w3-container ">
         <div class="w3-card-4 w3-col m12 s12 l12 eas fill">
             <img class="ifill" src="./timthumb.php.jpg" alt="parallaxadf" />
             <!-- <span class="bgi ifill"></span> -->
         </div>
 
     </section>
-    <section class="w3-section w3-content w3-row main">
-        <div class="w3-card w3-margin-right w3-margin-top w3-col l3 s12 eas">
+    <section class="w3-section w3-content sec_0 w3-col l3 s12">
+        <div class="w3-card w3-margin-right w3-margin-top  eas">
             <div class="w3-teal w3-container w3-center title">
                 <h4>work</h4>
             </div>
@@ -72,14 +72,14 @@
             </div>
         </div>
     </section>
-    <section></section>
-    <section></section>
+    <section class="w3-section w3-container sec_1 w3-col l3 s12"></section>
+    <section class="w3-section w3-container sec_2 w3-col l3 s12"></section>
     <div></div>
     <p>content right</p>
     <script>
         var data = {
-            d: null,
-            cards: null,
+            d: undefined,
+            cards: undefined,
             do_: function() {
                 var c = 0;
                 data.cards = document.querySelectorAll(".w3-card");
@@ -93,7 +93,9 @@
                     $(card).find(".title h4").text(post.title);
                     $(card).find(".content img").attr('src', post.thumbnail_images.full.url);
                     //$(card)
-                    $(".main").append(card);
+                    var pointer = c % 3;
+                    var appento = "sec_" + c.toString();
+                    $(appento).append(card);
                     c = c + 1;
                 });
                 $(data.cards[0]).remove();
@@ -101,8 +103,23 @@
         }
         $(document).ready(function() {
             try {
-                pull();
-                data.do_();
+                var pr = new Promise(function(resolve, reject) {
+                    $.getJSON("./hc_info.json", function(res) {
+                        //console.log(res);
+                        if (res) {
+                            data.d = res;
+                            resolve(res);
+                        } else {
+                            reject(console.error("Failed"));
+                        }
+
+                    });
+
+
+                });
+                pr.then(function(res) {
+                    data.do_();
+                });
             } catch (ex) {
                 console.log(ex);
             }
@@ -112,7 +129,6 @@
             $.getJSON("./hc_info.json", function(res) {
                 console.log(res);
                 data.d = res;
-
             });
         }
     </script>

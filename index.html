@@ -104,20 +104,24 @@
         }
         $(document).ready(function() {
             try {
-                $.getJSON("./hc_info.json", function(res) {
-                    console.log(res);
-                    data.d = res;
-                    var c = 0;
-                    data.cards = document.querySelectorAll(".w3-card");
-                    data.cards.forEach(card => {
-
-                        $(card).find(".title h4").text = data.d.posts[c++].title;
-                    });
-                });
+                pull();
             } catch (ex) {
                 console.log(ex);
             }
         });
+
+        function pull() {
+            $.getJSON("./hc_info.json", function(res) {
+                console.log(res);
+                data.d = res;
+                var c = 0;
+                data.cards = document.querySelectorAll(".w3-card");
+                data.cards.forEach(card => {
+                    card
+                    $(card).find(".title h4").text = data.d.posts[c++].title;
+                });
+            });
+        }
     </script>
 </body>
 

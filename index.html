@@ -82,7 +82,7 @@
                 //     $(card).find(".title h4").text(data.d.posts[c].title);
                 //     c = c + 1;
                 // });
-                data.d.post.forEach(post => {
+                data.d.posts.forEach(post => {
                     var card = $(data.cards[0]).clone(true);
                     $(card).find(".title h4").text(post.title);
                     $(".main").append(card);

@@ -55,40 +55,13 @@
         </div>
 
     </section>
-    <section class="w3-section w3-container w3-row">
+    <section class="w3-section w3-content w3-row main">
         <div class="w3-card w3-margin-right w3-margin-top w3-col l3 s12">
             <div class="w3-teal w3-container w3-center title">
                 <h4>work</h4>
             </div>
             <p class="w3-container">Card 1 is an example</p>
             <div class="footer w3-teal w3-container footer">
-                <h4 class="">this is the footer</h4>
-            </div>
-        </div>
-        <div class="w3-card w3-margin-right w3-margin-top w3-col l3 s12">
-            <div class="w3-aqua w3-center w3-container">
-                <h4>work</h4>
-            </div>
-            <p>Card 2 is an example</p>
-            <div class="footer w3-aqua">
-                <h4 class="">this is the footer</h4>
-            </div>
-        </div>
-        <div class="w3-card w3-margin-right w3-margin-top w3-col l3 s12">
-            <div class="w3-aqua w3-center w3-container">
-                <h4>work</h4>
-            </div>
-            <p>Card 3 is an example</p>
-            <div class="footer w3-aqua w3-container">
-                <h4 class="">this is the footer</h4>
-            </div>
-        </div>
-        <div class="w3-card w3-margin-right w3-margin-top w3-col l3 s12">
-            <div class="w3-aqua w3-center w3-container">
-                <h4>work</h4>
-            </div>
-            <p>Card 4 is an example</p>
-            <div class="footer w3-aqua w3-container">
                 <h4 class="">this is the footer</h4>
             </div>
         </div>
@@ -104,11 +77,16 @@
             do_: function() {
                 var c = 0;
                 data.cards = document.querySelectorAll(".w3-card");
-                data.cards.forEach(function(card) {
-                    console.log(card, c);
-                    $(card).find(".title h4").text(data.d.posts[c].title);
+                // data.cards.forEach(function(card) {
+                //     //console.log(card, c);
+                //     $(card).find(".title h4").text(data.d.posts[c].title);
+                //     c = c + 1;
+                // });
+                data.d.post.forEach(post => {
+                    var card = $(data.cards[0]).clone(true);
+                    $(card).find(".title h4").text(post.title);
+                    $(".main").append(card);
                     c = c + 1;
-
                 });
             }
         }

@@ -111,7 +111,7 @@
                     data.cards = document.querySelectorAll(".w3-card");
                     data.cards.forEach(card => {
 
-                        $(card).find(".title h4").text = data.d.post[c++].title;
+                        $(card).find(".title h4").text = data.d.posts[c++].title;
                     });
                 });
             } catch (ex) {

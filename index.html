@@ -108,8 +108,9 @@
 
                         data.d = res;
                         if (res) {
-                            resolve(res);
                             console.log(res);
+                            resolve(res);
+
                         } else {
                             reject("Failed");
                         }

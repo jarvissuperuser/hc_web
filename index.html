@@ -25,12 +25,12 @@
         }
         
         .eas {
-            transition: all 300ms ease-out;
+            transition: all 300ms ease-in-out;
             ;
         }
         
         .eas:hover {
-            transform: scale(1.2);
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -93,6 +93,17 @@
     <section></section>
     <div></div>
     <p>content right</p>
+    <script>
+        $(document).ready(function() {
+            try {
+                $.getJSON("https://www.thehomechannel.co.za/?json=get_recent_thumbnails", function(res) {
+                    console.log(res);
+                });
+            } catch (ex) {
+                console.log(ex);
+            }
+        });
+    </script>
 </body>
 
 </html>

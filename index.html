@@ -96,7 +96,7 @@
     <script>
         $(document).ready(function() {
             try {
-                $.getJSON("https://www.thehomechannel.co.za/?json=get_recent_thumbnails", function(res) {
+                $.getJSON("./hc_info.json", function(res) {
                     console.log(res);
                 });
             } catch (ex) {

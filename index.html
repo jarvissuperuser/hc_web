@@ -105,10 +105,11 @@
             try {
                 var pr = new Promise(function(resolve, reject) {
                     $.getJSON("./hc_info.json", function(res) {
-                        //console.log(res);
+
                         data.d = res;
                         if (res) {
                             resolve(res);
+                            console.log(res);
                         } else {
                             reject("Failed");
                         }

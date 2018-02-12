@@ -102,6 +102,7 @@
             d: null,
             cards: null,
             do_: function() {
+                var c = 0;
                 data.cards = document.querySelectorAll(".w3-card");
                 data.cards.forEach(function(card) {
                     console.log(card);
@@ -121,7 +122,7 @@
             $.getJSON("./hc_info.json", function(res) {
                 console.log(res);
                 data.d = res;
-                var c = 0;
+
             });
         }
     </script>

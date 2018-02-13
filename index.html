@@ -131,9 +131,9 @@
                 setTimeout(function() {
                     video.currentTime = parseFloat(parseInt(video.seekable.end(0.42) / 2));
                     setTimeout(function() {
-                        video.currentTime = parseFloat(parseInt(video.seekable.end(0.42) / (1 + Math.SQRT1_2)));
-                    }, 1000);
-                }, 1000);
+                        video.currentTime = parseFloat(parseInt(video.seekable.end(0.42) / (1.3333333)));
+                    }, 100);
+                }, 100);
             }
         });
 

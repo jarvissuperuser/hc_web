@@ -124,7 +124,7 @@
             }
         });
 
-        $('video').on("hover", function(e) {
+        $('video').on("mouseover", function(e) {
             var video = e.target;
             if (video.readyState === 4); {
                 video.currentTime = parseFloat(parseInt(video.seekable.end(0.42) / 4));

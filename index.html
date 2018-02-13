@@ -81,7 +81,7 @@
                 <h3>Advert</h3>
             </div>
             <div class="w3-content">
-                <video class="ifill" poster controls="nodownload">
+                <video class="ifill" poster controls="false">
                     <source src="Official_Blender_Foundation_release.webm.1080p.webm" />
                 </video>
             </div>
@@ -121,6 +121,19 @@
                 pull();
             } catch (ex) {
                 console.log(ex);
+            }
+        });
+
+        $('video').on("hover", function(e) {
+            var video = e.target;
+            if (video.readyState === 4); {
+                video.currentTime = parseFloat(parseInt(video.seekable.end(0.42) / 4));
+                setTimeout(function() {
+                    video.currentTime = parseFloat(parseInt(video.seekable.end(0.42) / 2));
+                    setTimeout(function() {
+                        video.currentTime = parseFloat(parseInt(video.seekable.end(0.42) / (1 + Math.SQRT1_2)));
+                    }, 1000);
+                }, 1000);
             }
         });
 

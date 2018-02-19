@@ -106,7 +106,6 @@
     <section class="  w3-margin-right sec_1 w3-col l3 s5"></section>
     <section class="  w3-margin-right sec_2 w3-col l3 s5"></section>
 		<!--<div class="w3-col l2 s12">
-=======
     </section>
     <page size="A4">
         <section class=" w3-margin-right sec_0 w3-col l3 s12">
@@ -174,13 +173,8 @@
                         $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
                         $(card).find(".footer h4.w3-right").text(post.fields.assignee ? post.fields.assignee.displayName : "-");
                         //$(card)
-<<<<<<< HEAD
-                        var pointer = c % 2;
-                        var appento = ".sec_" + pointer.toString();
-=======
                         var pointer = c / 5;
                         var appento = ".sec_" + Math.floor(pointer).toString();
->>>>>>> 0b76502dda5ce7b7a6df8668a914610b71da291d
                         //console.log(appento);
                         $(appento).append(card);
                         c = c + 1;

@@ -124,7 +124,7 @@
             }
         });
 
-        $('video').on("mouseover", function(e) {
+        /*$('video').on("mouseover", function(e) {
             var video = e.target;
             if (video.readyState === 4); {
                 video.currentTime = parseFloat(parseInt(video.seekable.end(0.42) / 4));
@@ -135,13 +135,13 @@
                     }, 500);
                 }, 500);
             }
-        });
+        });*/
 
         function pull() {
             $.getJSON("./hc_info.json", function(res) {
                 console.log(res);
                 data.d = res;
-                data.do_();
+                //data.do_();
             });
         }
     </script>

@@ -1,0 +1,1 @@
+curl -X GET -H "Authorization: Basic bXVnYWR6YXRAdGlzb2JsYWNrc3Rhci5jby56YTpUdG0zMzEzNzE=" -H "Content-Type: application/json" "https://tmgdigital.atlassian.net/rest/api/2/search?RapidViewId=2&view=planning.nodetail&jql=status!=Done%20AND%20issuetype=Task"

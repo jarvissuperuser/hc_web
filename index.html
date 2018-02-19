@@ -59,15 +59,15 @@
         </div>
 
     </section>
-    <section class=" w3-margin-right sec_0 w3-col l3 s12">
-        <div class="w3-card w3-margin-top eas">
-            <div class="w3-teal w3-container w3-center title">
-                <h4>work</h4>
+    <section class=" w3-margin-right sec_0 w3-col l12 s12">
+        <div class="w3-card w3-margin-top ">
+            <div class="w3-container w3-center title">
+                <h3>work</h3>
             </div>
             <div class="w3-content content noover">
-                <img alt="thumb" class="ifill" />
+                <!--<img alt="thumb" class="ifill" />-->
             </div>
-            <div class="footer w3-teal w3-container footer">
+            <div class="footer w3-container footer">
                 <h4 class="">this is the footer</h4>
             </div>
         </div>
@@ -90,7 +90,8 @@
     </div>
 
     <script>
-        var data = {
+        var data = 
+				{
             d: undefined,
             cards: undefined,
             do_: function() {
@@ -123,7 +124,6 @@
                 console.log(ex);
             }
         });
-
         /*$('video').on("mouseover", function(e) {
             var video = e.target;
             if (video.readyState === 4); {
@@ -136,7 +136,6 @@
                 }, 500);
             }
         });*/
-
         function pull() {
             $.getJSON("./g.php", function(res) {
                 console.log(res);

@@ -113,9 +113,9 @@
                         var card = $(data.cards[0]).clone(true);
                         $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
                         //$(card).find(".content img").attr('src', post.thumbnail_images.full.url);
-
-                        $(card).find(".footer h4.w3-left").html(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
-                        $(card).find(".footer h4.w3-right").html(post.fields.assignee ? post.fields.assignee.displayName : "-");
+                        $(card).find(".content").html("<p class='w3-center'>" + post.fields.project.name + "</p>");
+                        $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
+                        $(card).find(".footer h4.w3-right").text(post.fields.assignee ? post.fields.assignee.displayName : "-");
                         //$(card)
                         var pointer = c % 3;
                         var appento = ".sec_" + pointer.toString();
@@ -149,7 +149,7 @@
             $.getJSON("./g.php", function(res) {
                 console.log(res);
                 data.d = res;
-                //data.do_();
+                data.do_();
             });
         }
     </script>

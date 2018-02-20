@@ -89,7 +89,7 @@
                     </h3>
                 </div>
                 <div class="w3-content content noover">
-                    <img alt="thumb" class="ifill" />
+                    <img alt="thumb" class="w3-circle w3-small" />
                 </div>
                 <div class="footer w3-container footer">
                     <h4 class="w3-left"></h4>
@@ -140,7 +140,7 @@
                         var card = $(data.cards[0]).clone(true);
                         $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
                         $(card).find(".title").addClass(data.color[post.fields.priority.id]);
-                        $(card).find(".content img").attr('src', post.thumbnail_images.full.url);
+                        //$(card).find(".content img").attr('src', post.thumbnail_images.full.url);
                         $(card).find(".content").html("<p class='w3-center'>" + post.fields.project.name + "</p>");
                         $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
                         $(card).find(".footer h4.w3-right").text(post.fields.assignee ? post.fields.assignee.displayName : "-");

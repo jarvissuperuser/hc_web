@@ -108,10 +108,12 @@
                 //     $(card).find(".title h4").text(data.d.posts[c].title);
                 //     c = c + 1;
                 // });
+                data.color.reverse();
                 if (data.d.issues !== undefined)
                     data.d.issues.forEach(post => {
                         var card = $(data.cards[0]).clone(true);
                         $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
+                        $(card).find(".title").addClass(data.color[post.fields.priority.id]);
                         //$(card).find(".content img").attr('src', post.thumbnail_images.full.url);
                         $(card).find(".content").html("<p class='w3-center'>" + post.fields.project.name + "</p>");
                         $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
@@ -124,7 +126,8 @@
                         c = c + 1;
                     });
                 $(data.cards[0]).remove();
-            }
+            },
+            color: ["w3-grey", "w3-dark-grey", "w3-yellow", "w3-pink", "w3-red", ""]
         }
         $(document).ready(function() {
             try {

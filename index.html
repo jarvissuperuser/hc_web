@@ -107,7 +107,7 @@
                 if (data.d.issues !== undefined)
                     data.d.issues.forEach(post => {
                         var card = $(data.cards[0]).clone(true);
-                        $(card).find(".title h4 p").text(post.fields.summary ? post.fields.summary : "Not set");
+                        $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
                         //$(card).find(".content img").attr('src', post.thumbnail_images.full.url);
                         $(card).find(".footer h4.w3-left").html(post.fields.priority ? post.fields.priority.id : "-");
                         $(card).find(".footer h4.w3-right").html(post.fields.assignee ? post.fields.assignee.displayName : "-");

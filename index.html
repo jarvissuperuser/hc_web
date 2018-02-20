@@ -52,6 +52,24 @@
         .noover {
             overflow: hidden !important;
         }
+        
+        page[size="A4"] {
+            background: white;
+            width: 21cm;
+            height: 29.7cm;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 0.5cm;
+            box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+        }
+        
+        @media print {
+            body,
+            page[size="A4"] {
+                margin: 0;
+                box-shadow: 0;
+            }
+        }
     </style>
 </head>
 
@@ -63,24 +81,33 @@
         </div>
 
     </section>
-    <section class=" w3-margin-right sec_0 w3-col l3 s12">
-        <div class="w3-card w3-margin-top ">
-            <div class="w3-container w3-left-align title">
-                <h3>
-                    <p>work</p>
-                </h3>
+    <page size="A4">
+        <section class=" w3-margin-right sec_0 w3-col l3 s12">
+            <div class="w3-card w3-margin-top ">
+                <div class="w3-container w3-left-align title">
+                    <h3>
+                        <p>work</p>
+                    </h3>
+                </div>
+                <div class="w3-content content noover">
+                    <img alt="thumb" class="ifill" />
+                </div>
+                <div class="footer w3-container footer">
+                    <h4 class="w3-left"></h4>
+                    <h4 class="w3-right"></h4>
+                </div>
             </div>
-            <div class="w3-content content noover">
-                <!--<img alt="thumb" class="ifill" />-->
-            </div>
-            <div class="footer w3-container footer">
-                <h4 class="w3-left"></h4>
-                <h4 class="w3-right"></h4>
-            </div>
-        </div>
-    </section>
-    <section class="  w3-margin-right sec_1 w3-col l3 s12"></section>
-    <section class="  w3-margin-right sec_2 w3-col l3 s12"></section>
+        </section>
+        <section class="  w3-margin-right sec_1 w3-col l3 s12"></section>
+    </page>
+    <page size="A4">
+        <section class="  w3-margin-right sec_2 w3-col l3 s12"></section>
+        <section class="  w3-margin-right sec_3 w3-col l3 s12"></section>
+    </page>
+    <page size="A4">
+        <section class="  w3-margin-right sec_4 w3-col l3 s12"></section>
+        <section class="  w3-margin-right sec_5 w3-col l3 s12"></section>
+    </page>
     <div class="w3-col l2 s12">
         <p>content right</p>
         <div class="w3-card-4 ">
@@ -114,13 +141,13 @@
                         var card = $(data.cards[0]).clone(true);
                         $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
                         $(card).find(".title").addClass(data.color[post.fields.priority.id]);
-                        //$(card).find(".content img").attr('src', post.thumbnail_images.full.url);
+                        $(card).find(".content img").attr('src', post.thumbnail_images.full.url);
                         $(card).find(".content").html("<p class='w3-center'>" + post.fields.project.name + "</p>");
                         $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
                         $(card).find(".footer h4.w3-right").text(post.fields.assignee ? post.fields.assignee.displayName : "-");
                         //$(card)
-                        var pointer = c % 3;
-                        var appento = ".sec_" + pointer.toString();
+                        var pointer = c / 5;
+                        var appento = ".sec_" + Math.floor(pointer).toString();
                         //console.log(appento);
                         $(appento).append(card);
                         c = c + 1;

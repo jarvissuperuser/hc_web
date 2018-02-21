@@ -175,7 +175,7 @@
                             var appento = ".sec_" + Math.floor(pointer).toString();
                             $(appento).append(card);
                             var sub = post.fields.subtasks;
-                            sub.array.forEach(p => {
+                            sub.forEach(p => {
                                 card = $(data.card).clone(true);
                                 $(card).find(".title h3 p").text(p.fields.summary ? p.fields.summary : "Not set");
                                 $(card).addClass(data.color[p.fields.priority.id]);

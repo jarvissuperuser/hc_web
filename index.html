@@ -139,8 +139,9 @@
                 var datatype = dtyp !== undefined ? dtyp : "Tasks";
                 var tag = t !== undefined ? t : "-";
                 $("section").empty();
-
-                var lptil = startAt + 10 > data.d.issues.length ? data.d.issues.length : startAt + 10;
+                var ilen = data.d.issues.length;
+                var lptil = startAt + 10 > ilen ? ilen : startAt + 10
+                lptil = tag !== '-' ? ilen : lptil;
                 // ** end setup
                 if (data.d.issues !== undefined && datatype === "Tasks") {
                     for (var a = startAt; a < lptil; a++) {

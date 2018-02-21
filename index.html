@@ -139,7 +139,7 @@
                 var datatype = dtyp !== undefined ? dtyp : "Tasks";
                 $(".sec_0").empty();
                 $(".sec_1").empty();
-                var lptil = startAt + 10 > data.d.issues.length ? data.d.issues.length % 10 : 10;
+                var lptil = startAt + 10 > data.d.issues.length ? data.d.issues.length % 10 : startAt + 10;
                 // ** end setup
                 if (data.d.issues !== undefined && datatype === "Tasks") {
                     for (var a = startAt; a < lptil; a++) {

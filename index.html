@@ -175,11 +175,17 @@
                     for (var a = startAt; a < lptil; a++) {
                         var card = $(data.card).clone(true);
                         post = data.d.issues[a];
+                        var pointer = c % 5;
                         var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                         $(card).find(".footer h4.w3-right").text(assignee);
                         if (post.fields.subtasks.length > 0) {
                             $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
-                            var pointer = c % 5;
+
+                            var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
+                            var cont = (post.fields.assignee ?
+                                    "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
+                                    initials.toString().toLowerCase() + ".png'/>" : "") +
+                                "<p class='w3-center'>" + post.fields.project.name + "</p>";
                             var appento = ".sec_" + Math.floor(pointer).toString();
                             $(appento).append(card);
                             var sub = post.fields.subtasks;

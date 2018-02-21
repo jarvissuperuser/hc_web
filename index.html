@@ -150,7 +150,7 @@
                         //console.log(asa);
                         var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
                         var cont = (post.fields.assignee ?
-                                "<img class='w3-circle xxxsmall w3-right' src='" +
+                                "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
                                 initials.toString().toLowerCase() + ".png'/>" : "") +
                             "<p class='w3-center'>" + post.fields.project.name + "</p>";
                         $(card).find(".content").html(cont);
@@ -164,6 +164,11 @@
                         c = c + 1;
                     }
                 }
+                $("img").error(
+                    function() {
+                        $(this).hide();
+                    }
+                );
 
             },
             color: ["w3-grey", "w3-dark-grey", "w3-orange", "w3-pink", "w3-red", ""]

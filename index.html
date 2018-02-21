@@ -145,9 +145,9 @@
                         post = data.d.issues[a];
                         $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
                         $(card).addClass(data.color[post.fields.priority.id]);
-                        var assignee = post.fields.assignee ? post.fields.assignee.displayName : "-";
+                        var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                         var asa = assignee !== '-' ? assignee.split(" ") : "";
-                        console.log(asa);
+                        //console.log(asa);
                         var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
                         var cont = (post.fields.assignee ?
                                 "<img class='w3-circle xxxsmall w3-right' src='" +

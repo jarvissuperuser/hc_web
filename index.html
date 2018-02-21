@@ -215,14 +215,12 @@
                         return true;
                     case "todo":
                         data.tags.todo.forEach(t => {
-                            if (ret) break;
                             if (t === f)
                                 ret = true;
                         });
                         return ret;
                     case "inpr":
                         data.tags.inpr.forEach(t => {
-                            if (ret) break;
                             if (t === f)
                                 ret = true;
                         });

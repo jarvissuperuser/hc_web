@@ -132,15 +132,16 @@
         var data = {
             d: undefined,
             cards: undefined,
-            do_: function(start, dtyp, t) {
+            do_: function(start, dtyp, t, end) {
                 // **  setup
                 var c = 0;
                 var startAt = start !== undefined ? start : 0; //error handling for optional
+                var endAt = end !== undefined ? end : 10;
                 var datatype = dtyp !== undefined ? dtyp : "Tasks";
                 var tag = t !== undefined ? t : "-";
                 $("section").empty();
                 var ilen = data.d.issues.length;
-                var lptil = startAt + 10 > ilen ? ilen : startAt + 10
+                var lptil = startAt + endAt > ilen ? ilen : startAt + endAt
                 lptil = tag !== '-' ? ilen : lptil;
                 // ** end setup
                 if (data.d.issues !== undefined && datatype === "Tasks") {

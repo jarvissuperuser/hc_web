@@ -147,6 +147,7 @@
                         $(card).addClass(data.color[post.fields.priority.id]);
                         var assignee = post.fields.assignee ? post.fields.assignee.displayName : "-";
                         var asa = assignee !== '-' ? assignee.split(" ") : "";
+                        console.log(asa);
                         var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
                         var cont = (post.fields.assignee ?
                                 "<img class='w3-circle xxxsmall w3-right' src='" +

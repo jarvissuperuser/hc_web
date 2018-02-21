@@ -187,6 +187,7 @@
                                     initials.toString().toLowerCase() + ".png'/>" : "") +
                                 "<p class='w3-center'>" + post.fields.project.name + "</p>";
                             var appento = ".sec_" + Math.floor(pointer).toString();
+                            $(card).find(".content").html(cont);
                             $(appento).append(card);
                             var sub = post.fields.subtasks;
                             sub.forEach(p => {

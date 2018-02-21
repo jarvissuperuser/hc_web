@@ -133,13 +133,16 @@
         var data = {
             d: undefined,
             cards: undefined,
-            do_: function(start) {
+            do_: function(start, dtyp) {
+                // **  setup
                 var c = 0;
+                var startAt = start !== undefined ? start : 0; //error handling for optional
+                var datatype = dtyp !== undefined ? dtyp : "Tasks";
                 $(".sec_0").empty();
                 $(".sec_1").empty();
 
-                if (data.d.issues !== undefined) {
-                    var startAt = start !== undefined ? start : 0;
+                // ** end setup
+                if (data.d.issues !== undefined && datatype === "Tasks") {
                     for (var a = startAt; a < (10 + startAt) % data.d.issues.length; a++) {
                         var card = $(data.card).clone(true);
                         post = data.d.issues[a];
@@ -161,7 +164,29 @@
                         var appento = ".sec_" + Math.floor(pointer).toString();
                         //console.log(appento);
                         $(appento).append(card);
-                        c = c + 1;
+                        c++;
+                    }
+                } else if (datatype === "subtasks") {
+                    for (var a = startAt; a < (10 + startAt) % data.d.issues.length; a++) {
+                        var card = $(data.card).clone(true);
+                        post = data.d.issues[a];
+                        if (post.fields.subtasks.length > 0) {
+                            $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
+                            var pointer = c / 5;
+                            var appento = ".sec_" + Math.floor(pointer).toString();
+                            $(appento).append(card);
+                            var sub = post.fields.subtasks;
+                            sub.array.forEach(p => {
+                                card = $(data.card).clone(true);
+                                $(card).find(".title h3 p").text(p.fields.summary ? p.fields.summary : "Not set");
+                                $(card).addClass(data.color[p.fields.priority.id]);
+                                var assignee = p.fields.assignee ? p.fields.assignee.displayName.trim() : "-";
+                                $(card).find(".footer h4.w3-right").text(assignee);
+                                $(appento).append(card);
+                            });
+                            c++;
+                        }
+
                     }
                 }
                 $("img").error(

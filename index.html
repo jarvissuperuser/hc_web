@@ -145,10 +145,10 @@
                         var asa = assignee !== '-' ? assignee.split(" ") : "";
                         var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
                         $(card).find(".content").html("<p class='w3-center'>" +
-                            post.fields.project.name + "</p>" + post.fields.assignee ?
-                            "<img class='w3-circle w3-xsmall' src='" + "" + "'/>" : "");
+                            post.fields.project.name + "</p>" + (post.fields.assignee ?
+                                "<img class='w3-circle w3-xsmall' src='" + initials + ".png'/>" : ""));
                         $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
-                        $(card).find(".footer h4.w3-right").text();
+                        $(card).find(".footer h4.w3-right").text(assignee);
                         //$(card)
                         var pointer = c / 2;
                         var appento = ".sec_" + Math.floor(pointer).toString();

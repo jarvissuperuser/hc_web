@@ -146,7 +146,7 @@
                         var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
                         $(card).find(".content").html("<p class='w3-center'>" +
                             post.fields.project.name + "</p>" + (post.fields.assignee ?
-                                "<img class='w3-circle w3-xsmall' src='" + initials.toString().toLowerCase() + ".png'/>" : ""));
+                                "<img class='w3-circle w3-xsmall w3-left' src='" + initials.toString().toLowerCase() + ".png'/>" : ""));
                         $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
                         $(card).find(".footer h4.w3-right").text(assignee);
                         //$(card)

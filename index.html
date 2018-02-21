@@ -180,7 +180,7 @@
                         $(card).find(".footer h4.w3-right").text(assignee);
                         if (post.fields.subtasks.length > 0) {
                             $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
-
+                            var asa = assignee !== '-' ? assignee.split(" ") : "";
                             var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
                             var cont = (post.fields.assignee ?
                                     "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +

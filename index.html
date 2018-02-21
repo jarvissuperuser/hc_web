@@ -169,6 +169,8 @@
                     for (var a = startAt; a < data.d.issues.length % (startAt + 10); a++) {
                         var card = $(data.card).clone(true);
                         post = data.d.issues[a];
+                        var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
+                        $(card).find(".footer h4.w3-right").text(assignee);
                         if (post.fields.subtasks.length > 0) {
                             $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
                             var pointer = c / 5;
@@ -225,7 +227,6 @@
                 console.log(res);
                 data.d = res;
                 data.do_();
-
             });
         }
     </script>

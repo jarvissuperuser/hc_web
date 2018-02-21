@@ -57,6 +57,10 @@
             max-width: 48px;
         }
         
+        .content {
+            height: 50px;
+        }
+        
         @media print {
             body,
             page[size="A4"] {
@@ -131,12 +135,8 @@
             cards: undefined,
             do_: function(start) {
                 var c = 0;
-
-                // data.cards.forEach(function(card) {
-                //     //console.log(card, c);
-                //     $(card).find(".title h4").text(data.d.posts[c].title);
-                //     c = c + 1;
-                // });
+                $("sec_0").empty();
+                $("sec_1").empty();
                 data.color.reverse();
                 if (data.d.issues !== undefined) {
                     var startAt = start !== undefined ? start : 0;

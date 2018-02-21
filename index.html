@@ -142,7 +142,7 @@
 
                 // ** end setup
                 if (data.d.issues !== undefined && datatype === "Tasks") {
-                    for (var a = startAt; a < (10 + startAt) % data.d.issues.length; a++) {
+                    for (var a = startAt; a < data.d.issues.length % (startAt + 10); a++) {
                         var card = $(data.card).clone(true);
                         post = data.d.issues[a];
                         $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
@@ -163,10 +163,10 @@
                         var appento = ".sec_" + Math.floor(pointer).toString();
                         //console.log(appento);
                         $(appento).append(card);
-                        c++;
+                        c = c + 1;
                     }
                 } else if (datatype === "subtasks") {
-                    for (var a = startAt; a < (10 + startAt) % data.d.issues.length; a++) {
+                    for (var a = startAt; a < data.d.issues.length % (startAt + 10); a++) {
                         var card = $(data.card).clone(true);
                         post = data.d.issues[a];
                         if (post.fields.subtasks.length > 0) {
@@ -183,7 +183,7 @@
                                 $(card).find(".footer h4.w3-right").text(assignee);
                                 $(appento).append(card);
                             });
-                            c++;
+                            c = c + 1;
                         }
 
                     }

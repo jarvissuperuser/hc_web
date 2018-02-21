@@ -138,8 +138,8 @@
                 var startAt = start !== undefined ? start : 0; //error handling for optional
                 var datatype = dtyp !== undefined ? dtyp : "Tasks";
                 var tag = t !== undefined ? t : "-";
-                $(".sec_0").empty();
-                $(".sec_1").empty();
+                $("section").empty();
+
                 var lptil = startAt + 10 > data.d.issues.length ? data.d.issues.length : startAt + 10;
                 // ** end setup
                 if (data.d.issues !== undefined && datatype === "Tasks") {

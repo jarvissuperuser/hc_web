@@ -84,7 +84,7 @@
         </div>
     </section>-->
     <page size="A4">
-        <section class=" w3-margin-right sec_0 w3-col l3 s5">
+        <section class=" w3-margin-right sec_0 w3-col l5 s5">
             <div class="w3-card w3-margin-top w3-border w3-border-dark-gray">
                 <div class="w3-container w3-left-align title">
                     <h3>
@@ -100,15 +100,15 @@
                 </div>
             </div>
         </section>
-        <section class="  w3-margin-right sec_1 w3-col l3 s5"></section>
+        <section class="  w3-margin-right sec_1 w3-col l5 s5"></section>
     </page>
     <page size="A4">
-        <section class="  w3-margin-right sec_2 w3-col l3 s5"></section>
-        <section class="  w3-margin-right sec_3 w3-col l3 s5"></section>
+        <section class="  w3-margin-right sec_2 w3-col l5 s5"></section>
+        <section class="  w3-margin-right sec_3 w3-col l5 s5"></section>
     </page>
     <page size="A4">
-        <section class=" w3-margin-right sec_4 w3-col l3 s5"></section>
-        <section class="  w3-margin-right sec_5 w3-col l3 s5"></section>
+        <section class=" w3-margin-right sec_4 w3-col l5 s5"></section>
+        <section class="  w3-margin-right sec_5 w3-col l5 s5"></section>
     </page>
     <!-- <div class="w3-col l2 s12">
         <p>content right</p>
@@ -148,9 +148,11 @@
                         var assignee = post.fields.assignee ? post.fields.assignee.displayName : "-";
                         var asa = assignee !== '-' ? assignee.split(" ") : "";
                         var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
-                        $(card).find(".content").html("<p class='w3-center'>" +
-                            post.fields.project.name + "</p>" + (post.fields.assignee ?
-                                "<img class='w3-circle xxxsmall w3-right' src='" + initials.toString().toLowerCase() + ".png'/>" : ""));
+                        var cont = (post.fields.assignee ?
+                                "<img class='w3-circle xxxsmall w3-right' src='" +
+                                initials.toString().toLowerCase() + ".png'/>" : "") +
+                            "<p class='w3-center'>" + post.fields.project.name + "</p>";
+                        $(card).find(".content").html(cont);
                         $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
                         $(card).find(".footer h4.w3-right").text(assignee);
                         //$(card)

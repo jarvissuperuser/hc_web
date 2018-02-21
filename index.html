@@ -132,11 +132,12 @@
         var data = {
             d: undefined,
             cards: undefined,
-            do_: function(start, dtyp) {
+            do_: function(start, dtyp, t) {
                 // **  setup
                 var c = 0;
                 var startAt = start !== undefined ? start : 0; //error handling for optional
                 var datatype = dtyp !== undefined ? dtyp : "Tasks";
+                var tag = t !== undefined ? t : "-";
                 $(".sec_0").empty();
                 $(".sec_1").empty();
                 var lptil = startAt + 10 > data.d.issues.length ? data.d.issues.length : startAt + 10;
@@ -145,23 +146,24 @@
                     for (var a = startAt; a < lptil; a++) {
                         var card = $(data.card).clone(true);
                         post = data.d.issues[a];
-                        $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
-                        $(card).addClass(data.color[post.fields.priority.id]);
-                        var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
-                        var asa = assignee !== '-' ? assignee.split(" ") : "";
-                        //console.log(asa);
-                        var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
-                        var cont = (post.fields.assignee ?
-                                "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
-                                initials.toString().toLowerCase() + ".png'/>" : "") +
-                            "<p class='w3-center'>" + post.fields.project.name + "</p>";
-                        $(card).find(".content").html(cont);
-                        $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
-                        $(card).find(".footer h4.w3-right").text(assignee);
-                        //$(card)
+                        //TODO: filter By Tag
+                        if (data.filter_tags(tag, post.fields.status.id)) {
+                            var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
+                            var asa = assignee !== '-' ? assignee.split(" ") : "";
+                            var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
+                            var cont = (post.fields.assignee ?
+                                    "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
+                                    initials.toString().toLowerCase() + ".png'/>" : "") +
+                                "<p class='w3-center'>" + post.fields.project.name + "</p>";
+
+                            $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
+                            $(card).addClass(data.color[post.fields.priority.id]);
+                            $(card).find(".content").html(cont);
+                            $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
+                            $(card).find(".footer h4.w3-right").text(assignee);
+                        }
                         var pointer = c / 5;
                         var appento = ".sec_" + Math.floor(pointer).toString();
-                        //console.log(appento);
                         $(appento).append(card);
                         c = c + 1;
                     }
@@ -173,17 +175,19 @@
                         $(card).find(".footer h4.w3-right").text(assignee);
                         if (post.fields.subtasks.length > 0) {
                             $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
-                            var pointer = c / 5;
+                            var pointer = c % 5;
                             var appento = ".sec_" + Math.floor(pointer).toString();
                             $(appento).append(card);
                             var sub = post.fields.subtasks;
                             sub.forEach(p => {
-                                card = $(data.card).clone(true);
-                                $(card).find(".title h3 p").text(p.fields.summary ? p.fields.summary : "Not set");
-                                $(card).addClass(data.color[p.fields.priority.id]);
-                                var assignee = p.fields.assignee ? p.fields.assignee.displayName.trim() : "-";
-                                $(card).find(".footer h4.w3-right").text(assignee);
-                                $(appento).append(card);
+                                if (filter_tags(tag, p.fields.status.id)) {
+                                    card = $(data.card).clone(true);
+                                    $(card).find(".title h3 p").text(p.fields.summary ? p.fields.summary : "Not set");
+                                    $(card).addClass(data.color[p.fields.priority.id]);
+                                    var assignee = p.fields.assignee ? p.fields.assignee.displayName.trim() : "-";
+                                    $(card).find(".footer h4.w3-right").text(assignee);
+                                    $(appento).append(card);
+                                }
                             });
                             c = c + 1;
                         }
@@ -198,7 +202,41 @@
                 );
 
             },
-            color: ["w3-grey", "w3-dark-grey", "w3-orange", "w3-pink", "w3-red", ""]
+            color: ["w3-grey", "w3-dark-grey", "w3-orange", "w3-pink", "w3-red", ""],
+            tags: {
+                todo: ["10300", "10000", "10100"],
+                inpr: ["3"],
+                qa: ["10002"]
+            },
+            filter_tags: function(t, f) {
+                var ret = false;
+                switch (t) {
+                    case "-":
+                        return true;
+                    case "todo":
+                        data.tags.todo.forEach(t => {
+                            if (ret) break;
+                            if (t === f)
+                                ret = true;
+                        });
+                        return ret;
+                    case "inpr":
+                        data.tags.inpr.forEach(t => {
+                            if (ret) break;
+                            if (t === f)
+                                ret = true;
+                        });
+                        return ret;
+                    case "qa":
+                        data.qa.inpr.forEach(t => {
+                            if (ret) break;
+                            if (t === f)
+                                ret = true;
+                        });
+                        return ret;
+                }
+
+            }
         }
         $(document).ready(function() {
             try {

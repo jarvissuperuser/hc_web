@@ -125,34 +125,41 @@
         var data = {
             d: undefined,
             cards: undefined,
-            do_: function() {
+            do_: function(start) {
                 var c = 0;
-                data.cards = document.querySelectorAll(".w3-card");
+
                 // data.cards.forEach(function(card) {
                 //     //console.log(card, c);
                 //     $(card).find(".title h4").text(data.d.posts[c].title);
                 //     c = c + 1;
                 // });
                 data.color.reverse();
-                if (data.d.issues !== undefined)
-                    data.d.issues.forEach(post => {
-                        var card = $(data.cards[0]).clone(true);
+                if (data.d.issues !== undefined) {
+                    var startAt = start !== undefined ? start : 0;
+                    for (var a = startAt; a < (10 + startAt) % data.d.issues.length; a++) {
+                        var card = $(data.card).clone(true);
+                        post = data.d.issues[a];
                         $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
                         $(card).addClass(data.color[post.fields.priority.id]);
-                        //$(card).find(".content img").attr('src', post.thumbnail_images.full.url);
-                        $(card).find(".content").html("<p class='w3-center'>" + post.fields.project.name + "</p>");
+                        var assignee = post.fields.assignee ? post.fields.assignee.displayName : "-";
+                        var asa = assignee !== '-' ? assignee.split(" ") : "";
+                        var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
+                        $(card).find(".content").html("<p class='w3-center'>" +
+                            post.fields.project.name + "</p>" + post.fields.assignee ?
+                            "<img class='w3-circle w3-xsmall' src='" + "" + "'/>" : "");
                         $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
-                        $(card).find(".footer h4.w3-right").text(post.fields.assignee ? post.fields.assignee.displayName : "-");
+                        $(card).find(".footer h4.w3-right").text();
                         //$(card)
-                        var pointer = c / 5;
+                        var pointer = c / 2;
                         var appento = ".sec_" + Math.floor(pointer).toString();
                         //console.log(appento);
                         $(appento).append(card);
                         c = c + 1;
-                    });
-                $(data.cards[0]).remove();
+                    }
+                }
+
             },
-            color: ["w3-grey", "w3-dark-grey", "w3-yellow", "w3-pink", "w3-red", ""]
+            color: ["w3-grey", "w3-dark-grey", "w3-orange", "w3-pink", "w3-red", ""]
         }
         $(document).ready(function() {
             try {
@@ -174,10 +181,14 @@
             }
         });*/
         function pull() {
+            data.cards = document.querySelectorAll(".w3-card");
+            data.card = $(data.cards[0]).clone(true);
+            $(data.cards[0]).remove();
             $.getJSON("./g.php", function(res) {
                 console.log(res);
                 data.d = res;
                 data.do_();
+
             });
         }
     </script>

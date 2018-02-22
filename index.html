@@ -171,6 +171,7 @@
             $.getJSON("./g.php", function(res) {
                 console.log(res);
                 data.d = res;
+                btn.create_cherries();
                 data.do_();
             });
         }

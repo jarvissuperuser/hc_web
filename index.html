@@ -297,6 +297,7 @@
                 var cfg = btn.config();
                 var cnt = cfg.end !== "" ? cfg.end : 10
                 btn.pointer = (btn.pointer + cnt) < data.d.issues.length ? btn.pointer + cnt : 0;
+                console.log(btn.pointer, cnt);
                 data.do_(btn.pointer, cfg.issueType, cfg.status, cnt);
             },
             previous: function() {
@@ -315,6 +316,7 @@
                 options.forEach(o => {
                     args[o.name] = o.value
                 });
+                console.log(args);
                 return args;
             },
             do_: function() {

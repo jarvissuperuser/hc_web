@@ -39,7 +39,7 @@ var btn = {
             i.forEach(task => {
                 if (task.fields.subtasks.length > 0) {
                     var b = "<button class='w3-btn' onclick='data.do_(" +
-                        cnt + ",\"subtasks\",\"-\",1)'>" + task.summary + "</button>";
+                        cnt + ",\"subtasks\",\"-\",1)'>" + task.fields.summary + "</button>";
                     $(".cntrl .w3-card-4 .w3-content").append(b);
                 }
                 cnt = cnt + 1;

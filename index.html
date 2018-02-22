@@ -147,12 +147,13 @@
             cards: undefined,
             do_: function(start, dtyp, t, end) {
                 // **  setup
+                $("section").empty();
                 var c = 0;
                 var startAt = start !== undefined ? start : 0; //error handling for optional
                 var endAt = end !== undefined ? end : 10;
                 var datatype = dtyp !== undefined ? dtyp : "Tasks";
                 var tag = t !== undefined ? t : "-";
-                $("section").empty();
+
                 var ilen = data.d.issues.length;
                 var lptil = startAt + endAt > ilen ? ilen : startAt + endAt
                 lptil = tag !== '-' ? ilen : lptil;
@@ -162,7 +163,7 @@
                         var card = $(data.card).clone(true);
                         post = data.d.issues[a];
                         var pointer = c / 5;
-                        var appento = ".sec_ 0"; // + Math.floor(pointer).toString();
+                        var appento = ".sec_0"; // + Math.floor(pointer).toString();
                         //TODO: filter By Tag
                         if (data.filter_tags(tag, post.fields.status.id)) {
                             var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";

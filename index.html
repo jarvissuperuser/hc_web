@@ -301,7 +301,7 @@
             },
             config: function() {
                 var inputs = $("input").serializeArray();
-                var options = $("select");
+                var options = $("select").serializeArray();
                 var args = {};
                 inputs.forEach(i => {
                     args[i.name] = i.value;

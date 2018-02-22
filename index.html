@@ -122,11 +122,10 @@
                             <option value="inpr">In Progress</option>
                             <option value="qa">QA</option>
                     </select>
-                    <button class="w3-btn" onclick="btn.next()">>></button>
-                    <button class="w3-btn" onclick="btn.next()"><<</button>
-                    <!-- <video class="ifill" poster>
-                            <source src="Official_Blender_Foundation_release.webm.1080p.webm" />
-                        </video> -->
+                    <input class="w3-input" name="start" placeholder="0" />
+                    <input class="w3-input" name="end" placeholder="10" />
+                    <button class="w3-btn w3-green" onclick="btn.next()"> << </button>
+                    <button class="w3-btn w3-green" onclick="btn.next()"> >> </button>
                 </div>
             </div>
         </div>
@@ -296,6 +295,21 @@
             next: function() {
                 btn.pointer = (btn.pointer + 10) < data.d.issues.length ? btn.pointer + 10 : 0;
                 data.do_(btn.pointer);
+            },
+            previous: function() {
+
+            },
+            config: function() {
+                var inputs = $("input").serializeArray();
+                var options = $("select");
+                var args = {};
+                inputs.forEach(i => {
+                    args[i.name] = i.value;
+                });
+                options.forEach(o => {
+                    console.log(o);
+                });
+                console.log(args);
             }
         }
     </script>

@@ -41,8 +41,8 @@ var btn = {
                     var b = "<button class='w3-btn w3-small' onclick='data.do_(" +
                         cnt + ",\"subtasks\",\"-\",1)'><p>" +
                         task.fields.summary.toString().substr(0, 10).sub() +
-                        "... <span class='w3-red'>" + cnt.toString().sup() + "</span>"
-                    task.fields.subtasks.length.toString().sub() +
+                        "... <span class='w3-red'>" + cnt.toString().sup() + "</span>" +
+                        task.fields.subtasks.length.toString().sub() +
                         "</p></button>";
                     $(".cntrl .w3-card-4 .w3-content").append(b);
                 }

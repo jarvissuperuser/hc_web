@@ -88,7 +88,7 @@
         </div>
     </section>-->
     <page size="A4">
-        <div class="w3-col l1 w3-hide-small w3-hide-medium w3-right">
+        <div class="w3-col l1 w3-hide-small w3-hide-medium w3-right cntrl">
             <p class="w3-container w3-amber">controls</p>
             <div class="w3-card-4 ">
                 <div class="w3-container w3-black">
@@ -141,128 +141,9 @@
         <section class="  w3-margin-right sec_5 w3-col l5 s5"></section>
     </page>
 
-
+    <script src="js/data.js"></script>
+    <script src="js/button.js"></script>
     <script>
-        var data = {
-            d: undefined,
-            cards: undefined,
-            do_: function(start, dtyp, t, end) {
-                // **  setup
-                $("section").empty();
-                var c = 0;
-                var startAt = start !== undefined ? start : 0; //error handling for optional
-                var endAt = end !== undefined ? end : 10;
-                var datatype = dtyp !== undefined ? dtyp : "Tasks";
-                var tag = t !== undefined ? t : "-";
-
-                var ilen = data.d.issues.length;
-                var lptil = startAt + endAt > ilen ? ilen : startAt + endAt
-                lptil = tag !== '-' ? ilen : lptil;
-                // ** end setup
-                if (data.d.issues !== undefined && datatype === "Tasks") {
-                    for (var a = startAt; a < lptil; a++) {
-                        var card = $(data.card).clone(true);
-                        post = data.d.issues[a];
-                        var pointer = c / 5;
-                        var appento = ".sec_0"; // + Math.floor(pointer).toString();
-                        //TODO: filter By Tag
-                        if (data.filter_tags(tag, post.fields.status.id)) {
-                            var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
-                            var asa = assignee !== '-' ? assignee.split(" ") : "";
-                            var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
-                            var cont = (post.fields.assignee ?
-                                    "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
-                                    initials.toString().toLowerCase() + ".png'/>" : "") +
-                                "<p class='w3-center'>" + post.fields.project.name + "</p>";
-
-                            $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
-                            $(card).addClass(data.color[post.fields.priority.id]);
-                            $(card).find(".content").html(cont);
-                            $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
-                            $(card).find(".footer h4.w3-right").text(assignee);
-                            $(appento).append(card);
-                            c = c + 1;
-                        }
-
-
-
-                    }
-                } else if (datatype === "subtasks") {
-                    for (var a = startAt; a < lptil; a++) {
-                        var card = $(data.card).clone(true);
-                        post = data.d.issues[a];
-                        var pointer = c % 5;
-                        var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
-                        $(card).find(".footer h4.w3-right").text(assignee);
-                        if (post.fields.subtasks.length > 0) {
-                            $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
-                            var asa = assignee !== '-' ? assignee.split(" ") : "";
-                            var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
-                            var cont = "<p class='w3-center'>" + post.fields.project.name + "</p>";
-                            var img = (post.fields.assignee ?
-                                "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
-                                initials.toString().toLowerCase() + ".png'/>" : "");
-                            var appento = ".sec_0"; // + Math.floor(pointer).toString();
-                            $(card).find(".content").html(img + cont);
-                            $(appento).append(card);
-                            var sub = post.fields.subtasks;
-                            sub.forEach(p => {
-                                if (data.filter_tags(tag, p.fields.status.id)) {
-                                    card = $(data.card).clone(true);
-                                    $(card).find(".title h3 p").text(p.fields.summary ? p.fields.summary : "Not set");
-                                    $(card).addClass(data.color[p.fields.priority.id]);
-                                    $(card).find(".content").html(cont);
-                                    var assignee = p.fields.assignee ? p.fields.assignee.displayName.trim() : "-";
-                                    $(card).find(".footer h4.w3-right").text(assignee);
-                                    $(appento).append(card);
-                                }
-                            });
-                            c = c + 1;
-                        }
-
-                    }
-                }
-                console.log(lptil);
-                $("img").on('error',
-                    function() {
-                        $(this).hide();
-                    }
-                );
-
-            },
-            color: ["w3-grey", "w3-dark-grey", "w3-orange", "w3-pink", "w3-red", ""],
-            tags: {
-                todo: ["10300", "10000", "10100"],
-                inpr: ["3"],
-                qa: ["10002"]
-            },
-            filter_tags: function(t, f) {
-                var ret = false;
-                switch (t) {
-                    case "-":
-                        return true;
-                    case "todo":
-                        data.tags.todo.forEach(t => {
-                            if (t === f)
-                                ret = true;
-                        });
-                        return ret;
-                    case "inpr":
-                        data.tags.inpr.forEach(t => {
-                            if (t === f)
-                                ret = true;
-                        });
-                        return ret;
-                    case "qa":
-                        data.tags.qa.forEach(t => {
-                            if (t === f)
-                                ret = true;
-                        });
-                        return ret;
-                }
-
-            }
-        }
         $(document).ready(function() {
             try {
                 pull();
@@ -292,41 +173,6 @@
                 data.d = res;
                 data.do_();
             });
-        }
-        var btn = {
-            pointer: 0,
-            next: function() {
-                var cfg = btn.config();
-                var cnt = cfg.end !== "" ? cfg.end : 10;
-                console.log(btn.pointer, ">", cnt);
-                btn.pointer = ((btn.pointer + parseInt(cnt)) < data.d.issues.length) ? btn.pointer + parseInt(cnt) : 0;
-                data.do_(parseInt(btn.pointer), cfg.issueType, cfg.status, parseInt(cnt));
-            },
-            previous: function() {
-                var cfg = btn.config();
-                var cnt = cfg.end !== "" ? cfg.end : 10
-                btn.pointer = (btn.pointer - parseInt(cnt)) > 0 ? btn.pointer - parseInt(cnt) : 0;
-                data.do_(parseInt(btn.pointer), cfg.issueType, cfg.status, parseInt(cnt));
-            },
-            config: function() {
-                var inputs = $("input").serializeArray();
-                var options = $("select").serializeArray();
-                var args = {};
-                inputs.forEach(i => {
-                    args[i.name] = i.value;
-                });
-                options.forEach(o => {
-                    args[o.name] = o.value
-                });
-                console.log(args);
-                return args;
-            },
-            do_: function() {
-                var cfg = btn.config();
-                var cnt = cfg.end !== "" ? cfg.end : 10;
-                var start = cfg.start !== "" ? cfg.start : 0;
-                data.do_(parseInt(start), cfg.issueType, cfg.status, parseInt(cnt));
-            }
         }
     </script>
 </body>

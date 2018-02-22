@@ -298,13 +298,13 @@
                 var cnt = cfg.end !== "" ? cfg.end : 10
                 btn.pointer = (btn.pointer + cnt) < data.d.issues.length ? btn.pointer + cnt : 0;
                 console.log(btn.pointer, cnt);
-                data.do_(btn.pointer, cfg.issueType, cfg.status, cnt);
+                data.do_(parseInt(btn.pointer), cfg.issueType, cfg.status, parseInt(cnt));
             },
             previous: function() {
                 var cfg = btn.config();
                 var cnt = cfg.end !== "" ? cfg.end : 10
-                btn.pointer = (btn.pointer - cnt) > 0 ? btn.pointer - cnt : 0;
-                data.do_(btn.pointer, cfg.issueType, cfg.status, cnt);
+                btn.pointer = (btn.pointer - parseInt(cnt)) > 0 ? btn.pointer - cnt : 0;
+                data.do_(parseInt(btn.pointer), cfg.issueType, cfg.status, parseInt(cnt));
             },
             config: function() {
                 var inputs = $("input").serializeArray();

@@ -42,7 +42,7 @@ var btn = {
                         cnt + ",\"subtasks\",\"-\",1)'><p>" +
                         task.fields.summary.toString().substr(0, 10).sub() +
                         "... <span class='w3-red'>" + cnt.toString().sup() + "</span>" +
-                        task.fields.subtasks.length.toString().sub() +
+                        task.fields.subtasks.length.toString() +
                         "</p></button>";
                     $(".cntrl .w3-card-4 .w3-content").append(b);
                 }

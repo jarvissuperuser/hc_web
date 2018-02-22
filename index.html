@@ -111,8 +111,19 @@
                     <h3>Page Controls</h3>
                 </div>
                 <div class="w3-content w3-teal">
-                    <button onclick="btn.next()">>></button>
-                    <button onclick="btn.next()"><<</button>
+                    <label for="issueType">Options</label>
+                    <select name="issueType" class="w3-select">
+                        <option value="Tasks">Tasks</option>
+                        <option value="subtasks">Sub-Tasks</option>
+                    </select>
+                    <select name="prog" class="w3-select">
+                            <option value="-">All</option>
+                            <option value="todo">To Do</option>
+                            <option value="inpr">In Progress</option>
+                            <option value="qa">QA</option>
+                    </select>
+                    <button class="w3-btn" onclick="btn.next()">>></button>
+                    <button class="w3-btn" onclick="btn.next()"><<</button>
                     <!-- <video class="ifill" poster>
                             <source src="Official_Blender_Foundation_release.webm.1080p.webm" />
                         </video> -->

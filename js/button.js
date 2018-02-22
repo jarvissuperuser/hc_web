@@ -40,7 +40,7 @@ var btn = {
                 if (task.fields.subtasks.length > 0) {
                     var b = "<button class='w3-btn w3-small' onclick='data.do_(" +
                         cnt + ",\"subtasks\",\"-\",1)'><p>" +
-                        task.fields.summary.toString().substr(7).sub() +
+                        task.fields.summary.toString().substr(0, 10).sub() +
                         "..." + cnt.toString().sup() +
                         task.fields.subtasks.length.toString().sub() +
                         "</p></button>";

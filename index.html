@@ -113,20 +113,22 @@
         <section class=" w3-margin-right sec_4 w3-col l5 s5"></section>
         <section class="  w3-margin-right sec_5 w3-col l5 s5"></section>
     </page>
-    <!-- <div class="w3-col l2 s12">
-        <p>content right</p>
+    <div class="w3-col l2 s12">
+        <p class="w3-container w3-amber">controls</p>
         <div class="w3-card-4 ">
             <div class="title w3-container w3-black">
-                <h3>Advert</h3>
+                <h3>Page Controls</h3>
             </div>
             <div class="w3-content">
-                <video class="ifill" poster>
+                <button onclick="btn.next()">>></button>
+                <!-- <video class="ifill" poster>
                     <source src="Official_Blender_Foundation_release.webm.1080p.webm" />
-                </video>
+                </video> -->
             </div>
 
+
         </div>
-    </div> -->
+    </div>
 
     <script>
         var data = {
@@ -277,6 +279,13 @@
                 data.d = res;
                 data.do_();
             });
+        }
+        var btn = {
+            pointer: 0,
+            next: function() {
+                btn.pointer = (btn.pointer + 10) < data.d.issues.length ? btn.pointer + 10 : 0;
+                data.do_(btn.pointer);
+            }
         }
     </script>
 </body>

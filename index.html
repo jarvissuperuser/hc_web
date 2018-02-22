@@ -116,16 +116,17 @@
                         <option value="Tasks">Tasks</option>
                         <option value="subtasks">Sub-Tasks</option>
                     </select>
-                    <select name="prog" class="w3-select">
+                    <select name="status" class="w3-select">
                             <option value="-">All</option>
                             <option value="todo">To Do</option>
                             <option value="inpr">In Progress</option>
                             <option value="qa">QA</option>
                     </select>
-                    <input class="w3-input" name="start" placeholder="0" />
-                    <input class="w3-input" name="end" placeholder="10" />
-                    <button class="w3-btn w3-green" onclick="btn.next()"> << </button>
+                    <input class="w3-input" name="start" type="number" placeholder="Starting Point" />
+                    <input class="w3-input" name="end" type="number" placeholder="End Point" />
+                    <button class="w3-btn w3-green" onclick="btn.previous()"> << </button>
                     <button class="w3-btn w3-green" onclick="btn.next()"> >> </button>
+                    <button class="w3-btn w3-red" onclick="btn.do_()">X</button>
                 </div>
             </div>
         </div>
@@ -293,11 +294,16 @@
         var btn = {
             pointer: 0,
             next: function() {
-                btn.pointer = (btn.pointer + 10) < data.d.issues.length ? btn.pointer + 10 : 0;
-                data.do_(btn.pointer);
+                var cfg = btn.config();
+                var cnt = cfg.end !== "" ? cfg.end : 10
+                btn.pointer = (btn.pointer + cnt) < data.d.issues.length ? btn.pointer + cnt : 0;
+                data.do_(btn.pointer, cfg.issueType, cfg.status, cnt);
             },
             previous: function() {
-
+                var cfg = btn.config();
+                var cnt = cfg.end !== "" ? cfg.end : 10
+                btn.pointer = (btn.pointer - cnt) > 0 ? btn.pointer - cnt : 0;
+                data.do_(btn.pointer, cfg.issueType, cfg.status, cnt);
             },
             config: function() {
                 var inputs = $("input").serializeArray();
@@ -307,9 +313,15 @@
                     args[i.name] = i.value;
                 });
                 options.forEach(o => {
-                    console.log(o);
+                    args[o.name] = o.value
                 });
-                console.log(args);
+                return args;
+            },
+            do_: function() {
+                var cfg = btn.config();
+                var cnt = cfg.end !== "" ? cfg.end : 10;
+                var start = cfg.start !== "" ? cfg.start : 0;
+                data.do_(start, cfg.issueType, cfg.status, cnt);
             }
         }
     </script>

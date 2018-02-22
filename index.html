@@ -298,7 +298,7 @@
             next: function() {
                 var cfg = btn.config();
                 var cnt = cfg.end !== "" ? cfg.end : 10
-                btn.pointer = (btn.pointer + cnt) < data.d.issues.length ? btn.pointer + parse(cnt) : 0;
+                btn.pointer = (btn.pointer + cnt) < data.d.issues.length ? btn.pointer + parseInt(cnt) : 0;
                 console.log(btn.pointer, cnt);
                 data.do_(parseInt(btn.pointer), cfg.issueType, cfg.status, parseInt(cnt));
             },

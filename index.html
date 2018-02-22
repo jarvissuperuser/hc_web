@@ -88,6 +88,32 @@
         </div>
     </section>-->
     <page size="A4">
+        <div class="w3-col l1 s2 w3-right">
+            <p class="w3-container w3-amber">controls</p>
+            <div class="w3-card-4 ">
+                <div class="w3-container w3-black">
+                    <h3>Page Controls</h3>
+                </div>
+                <div class="w3-content w3-teal">
+                    <label for="issueType">Options</label>
+                    <select name="issueType" class="w3-select">
+                                <option value="Tasks">Tasks</option>
+                                <option value="subtasks">Sub-Tasks</option>
+                            </select>
+                    <select name="status" class="w3-select">
+                                    <option value="-">All</option>
+                                    <option value="todo">To Do</option>
+                                    <option value="inpr">In Progress</option>
+                                    <option value="qa">QA</option>
+                            </select>
+                    <input class="w3-input" name="start" type="number" placeholder="Starting Point" />
+                    <input class="w3-input" name="end" type="number" placeholder="End Point" />
+                    <button class="w3-btn w3-green" onclick="btn.previous()"> << </button>
+                    <button class="w3-btn w3-green" onclick="btn.next()"> >> </button>
+                    <button class="w3-btn w3-red" onclick="btn.do_()">X</button>
+                </div>
+            </div>
+        </div>
         <section class=" w3-margin-right sec_0 ">
             <div class="w3-card w3-margin-top w3-border w3-border-dark-gray w3-col l5 s5">
                 <div class="w3-container w3-left-align title">
@@ -103,33 +129,8 @@
                 </div>
             </div>
         </section>
-        <section class="  w3-margin-right sec_1 w3-col l5 s5"></section>
-        <div class="w3-col l1 s2 float-right">
-            <p class="w3-container w3-amber">controls</p>
-            <div class="w3-card-4 ">
-                <div class="w3-container w3-black">
-                    <h3>Page Controls</h3>
-                </div>
-                <div class="w3-content w3-teal">
-                    <label for="issueType">Options</label>
-                    <select name="issueType" class="w3-select">
-                        <option value="Tasks">Tasks</option>
-                        <option value="subtasks">Sub-Tasks</option>
-                    </select>
-                    <select name="status" class="w3-select">
-                            <option value="-">All</option>
-                            <option value="todo">To Do</option>
-                            <option value="inpr">In Progress</option>
-                            <option value="qa">QA</option>
-                    </select>
-                    <input class="w3-input" name="start" type="number" placeholder="Starting Point" />
-                    <input class="w3-input" name="end" type="number" placeholder="End Point" />
-                    <button class="w3-btn w3-green" onclick="btn.previous()"> << </button>
-                    <button class="w3-btn w3-green" onclick="btn.next()"> >> </button>
-                    <button class="w3-btn w3-red" onclick="btn.do_()">X</button>
-                </div>
-            </div>
-        </div>
+        <!-- <section class="  w3-margin-right sec_1 w3-col l5 s5"></section> -->
+
     </page>
     <page size="A4">
         <section class="  w3-margin-right sec_2 w3-col l5 s5"></section>

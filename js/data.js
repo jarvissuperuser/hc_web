@@ -21,7 +21,7 @@ var data = {
                 var pointer = c / 5;
                 var appento = ".sec_0"; // + Math.floor(pointer).toString();
                 //TODO: filter By Tag
-                if (data.filter_tags(tag, post.fields.status.id) && post.fields.issueType.name !== "Epic") {
+                if (data.filter_tags(tag, post.fields.status.id) && post.fields.issuetype.name !== "Epic") {
                     var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                     var asa = assignee !== '-' ? assignee.split(" ") : "";
                     var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
@@ -37,7 +37,7 @@ var data = {
                     $(card).find(".footer h4.w3-right").text(assignee);
                     $(appento).append(card);
                     c = c + 1;
-                } else if (post.fields.issueType.name === "Epic" && post.fields.subtasks.length > 0) {
+                } else if (post.fields.issuetype.name === "Epic" && post.fields.subtasks.length > 0) {
                     var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                     var asa = assignee !== '-' ? assignee.split(" ") : "";
                     var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";

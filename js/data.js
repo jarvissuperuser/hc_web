@@ -90,7 +90,7 @@ var data = {
                 }
 
             }
-        } else if (data.d.issues !== undefined && datatype === "nopoints") {
+        } else if (datatype === "nopoints") {
             for (var a = startAt; a < lptil; a++) {
                 var card = $(data.card).clone(true);
                 post = data.d.issues[a];

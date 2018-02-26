@@ -21,7 +21,7 @@ var data = {
                 var pointer = c / 5;
                 var appento = ".sec_0"; // + Math.floor(pointer).toString();
                 //TODO: filter By Tag
-                if (data.filter_tags(tag, post.fields.status.id) && post.fields.issuetype.name !== "Epic") {
+                if (data.filter_tags(tag, post.fields.status.id) && post.fields.customfield_10021 !== undefined) {
                     var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                     var asa = assignee !== '-' ? assignee.split(" ") : "";
                     var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
@@ -90,6 +90,31 @@ var data = {
                 }
 
             }
+        } else if (data.d.issues !== undefined && datatype === "nopoints") {
+            for (var a = startAt; a < lptil; a++) {
+                var card = $(data.card).clone(true);
+                post = data.d.issues[a];
+                var pointer = c / 5;
+                var appento = ".sec_0"; // + Math.floor(pointer).toString();
+                //TODO: filter By Tag
+                if (data.filter_tags(tag, post.fields.status.id) && post.fields.customfield_10021 === undefined) {
+                    var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
+                    var asa = assignee !== '-' ? assignee.split(" ") : "";
+                    var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
+                    var cont = (post.fields.assignee ?
+                            "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
+                            initials.toString().toLowerCase() + ".png'/>" : "") +
+                        "<p class='w3-center'>" + post.fields.project.name + "</p>";
+
+                    $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
+                    $(card).addClass(data.color[post.fields.priority.id]);
+                    $(card).find(".content").html(cont);
+                    $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
+                    $(card).find(".footer h4.w3-right").text(assignee);
+                    $(appento).append(card);
+                    c = c + 1;
+                }
+            }
         }
         console.log(lptil);
         $("img").on('error',
@@ -101,7 +126,7 @@ var data = {
     },
     color: ["w3-grey", "w3-dark-grey", "w3-orange", "w3-pink", "w3-red", ""],
     tags: {
-        todo: ["10300", "10000", "10100"],
+        todo: ["10300", "10000"],
         inpr: ["3"],
         qa: ["10002"]
     },

@@ -21,7 +21,7 @@ var data = {
                 var pointer = c / 5;
                 var appento = ".sec_0"; // + Math.floor(pointer).toString();
                 //TODO: filter By Tag
-                if (data.filter_tags(tag, post.fields.status.id) && post.fields.customfield_10021 !== undefined) {
+                if (data.filter_tags(tag, post.fields.status.id) && post.fields.customfield_10021 !== null) {
                     var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                     var asa = assignee !== '-' ? assignee.split(" ") : "";
                     var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
@@ -97,7 +97,7 @@ var data = {
                 var pointer = c / 5;
                 var appento = ".sec_0"; // + Math.floor(pointer).toString();
                 //TODO: filter By Tag
-                if (data.filter_tags(tag, post.fields.status.id) && post.fields.customfield_10021 === undefined) {
+                if (data.filter_tags(tag, post.fields.status.id) && post.fields.customfield_10021 === null) {
                     var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                     var asa = assignee !== '-' ? assignee.split(" ") : "";
                     var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";

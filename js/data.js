@@ -52,6 +52,7 @@ var data = {
                     $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
                     $(card).find(".footer h4.w3-right").text(assignee);
                     $(appento).append(card);
+                    console.log("Epic", card);
                     c = c + 1;
                 }
             }

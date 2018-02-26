@@ -21,7 +21,23 @@ var data = {
                 var pointer = c / 5;
                 var appento = ".sec_0"; // + Math.floor(pointer).toString();
                 //TODO: filter By Tag
-                if (data.filter_tags(tag, post.fields.status.id)) {
+                if (data.filter_tags(tag, post.fields.status.id) && post.fields.issueType.name !== "Epic") {
+                    var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
+                    var asa = assignee !== '-' ? assignee.split(" ") : "";
+                    var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
+                    var cont = (post.fields.assignee ?
+                            "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
+                            initials.toString().toLowerCase() + ".png'/>" : "") +
+                        "<p class='w3-center'>" + post.fields.project.name + "</p>";
+
+                    $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
+                    $(card).addClass(data.color[post.fields.priority.id]);
+                    $(card).find(".content").html(cont);
+                    $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
+                    $(card).find(".footer h4.w3-right").text(assignee);
+                    $(appento).append(card);
+                    c = c + 1;
+                } else if (post.fields.issueType.name === "Epic" && post.fields.subtasks.length > 0) {
                     var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                     var asa = assignee !== '-' ? assignee.split(" ") : "";
                     var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
@@ -38,9 +54,6 @@ var data = {
                     $(appento).append(card);
                     c = c + 1;
                 }
-
-
-
             }
         } else if (datatype === "subtasks") {
             for (var a = startAt; a < lptil; a++) {

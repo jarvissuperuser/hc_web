@@ -34,7 +34,7 @@ var data = {
                     var cont = [initials.toString().toLowerCase() + ".png",
                         post.fields.project.name
                     ];
-                    var data_for_card = [post.fields.summary ? post.fields.summary.toString().bold() : "Not set",
+                    var data_for_card = [post.fields.summary ? post.fields.summary.toString() : "Not set",
                         data.color[post.fields.priority.id], cont,
                         post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
                     ];
@@ -104,7 +104,7 @@ var data = {
                     var cont = [initials.toString().toLowerCase() + ".png",
                         post.fields.project.name
                     ];
-                    var data_for_card = [post.fields.summary ? post.fields.summary.toString().bold() : "Not set",
+                    var data_for_card = [post.fields.summary ? post.fields.summary.toString() : "Not set",
                         data.color[post.fields.priority.id], cont,
                         post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
                     ];

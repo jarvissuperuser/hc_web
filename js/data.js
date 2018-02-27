@@ -160,12 +160,12 @@ var data = {
                 return ret;
         }
     },
-    place_card: function(card, data, appendto) {
-        $(card).find(data.target.title).text(data[0]);
-        $(card).addClass(data[1]);
-        $(card).find(data.target.content).html(data[2]);
-        $(card).find(data.target.footer_l).text(data[3]);
-        $(card).find(data.target.footer_r).text(data[4]);
+    place_card: function(card, dt, appendto) {
+        $(card).find(data.target.title).text(dt[0]);
+        $(card).addClass(dt[1]);
+        $(card).find(data.target.content).html(dt[2]);
+        $(card).find(data.target.footer_l).text(dt[3]);
+        $(card).find(data.target.footer_r).text(dt[4]);
         $(appento).append(appendto);
     }
 }

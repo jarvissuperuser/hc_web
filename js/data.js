@@ -1,6 +1,6 @@
 var data = {
     target: {
-        title: ".title h2 p",
+        title: ".title h3 p",
         content: [".content img", ".content p"],
         footer_l: ".footer h4.w3-left",
         footer_r: ".footer h4.w3-right"
@@ -138,7 +138,7 @@ var data = {
         }
     },
     place_card: function(card, dt, appendto) {
-        $(card).find(data.target.title).html(dt[0].substr(0, 100));
+        $(card).find(data.target.title).html(dt[0].substr(0, 120).bold());
         $(card).addClass(dt[1]);
         $(card).find(data.target.content[0]).attr('src', dt[2][0]);
         $(card).find(data.target.content[1]).text(dt[2][1]);

@@ -78,7 +78,7 @@ var data = {
                     sub.forEach(p => {
                         if (data.filter_tags(tag, p.fields.status.id)) {
                             card = $(data.card).clone(true);
-                            var cont = [initials.toString().toLowerCase() + ".png", p.fields.project.name];
+                            var cont = [initials.toString().toLowerCase() + ".png", post.fields.project.name];
                             var data_for_card = [p.fields.summary ? p.fields.summary : "Not set",
                                 data.color[p.fields.priority.id], cont,
                                 p.fields.customfield_10021 ? p.fields.customfield_10021 : "-", initials

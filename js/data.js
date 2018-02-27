@@ -2,8 +2,8 @@ var data = {
     target: {
         title: ".title h3 p",
         content: [".content img", ".content p"],
-        footer_l: ".footer h4.w3-left",
-        footer_r: ".footer h4.w3-right"
+        footer_l: ".footer h4.f-left",
+        footer_r: ".footer h4.f-right"
     },
     d: undefined,
     cards: undefined,

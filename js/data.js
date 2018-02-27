@@ -70,7 +70,7 @@ var data = {
                     var appento = ".sec_0"; // + Math.floor(pointer).toString();
                     var cont = [initials.toString().toLowerCase() + ".png", post.fields.project.name];
                     var data_for_card = [post.fields.summary ? post.fields.summary : "Not set",
-                        data.color[post.fields.priority.id], cont,
+                        "", cont,
                         post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
                     ];
                     data.place_card(card, data_for_card, appento);

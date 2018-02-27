@@ -178,7 +178,7 @@
             data.card = $(data.cards[0]).clone(true);
             data.color.reverse();
             $(data.cards[0]).remove();
-            $.getJSON("./g.php", function(res) {
+            $.getJSON("./gv2.php", function(res) {
                 console.log(res);
                 data.d = res;
                 btn.create_cherries();

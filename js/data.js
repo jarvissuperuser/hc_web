@@ -46,13 +46,11 @@ var data = {
                     var cont = [initials.toString().toLowerCase() + ".png",
                         post.fields.project.name
                     ];
-
                     var data_for_card = [post.fields.summary ? post.fields.summary : "Not set",
                         data.color[post.fields.priority.id], cont,
                         post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
                     ];
                     data.place_card(card, data_for_card, appento);
-                    $(appento).append(card);
                     console.log("Epic", card);
                     c = c + 1;
                 }
@@ -65,26 +63,26 @@ var data = {
                 var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                 $(card).find(".footer h4.w3-right").text(assignee);
                 if (post.fields.subtasks.length > 0) {
-                    $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
                     var asa = assignee !== '-' ? assignee.split(" ") : "";
                     var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
-                    var cont = "<p class='w3-center'>" + post.fields.project.name + "</p>";
-                    var img = (post.fields.assignee ?
-                        "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
-                        initials.toString().toLowerCase() + ".png'/>" : "");
+                    var cont = [initials.toString().toLowerCase(), post.fields.project.name];
                     var appento = ".sec_0"; // + Math.floor(pointer).toString();
-                    $(card).find(".content").html(img + cont);
-                    $(appento).append(card);
+                    var cont = [initials.toString().toLowerCase() + ".png", post.fields.project.name];
+                    var data_for_card = [post.fields.summary ? post.fields.summary : "Not set",
+                        data.color[post.fields.priority.id], cont,
+                        post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
+                    ];
+                    data.place_card(card, data_for_card, appento);
                     var sub = post.fields.subtasks;
                     sub.forEach(p => {
                         if (data.filter_tags(tag, p.fields.status.id)) {
                             card = $(data.card).clone(true);
-                            $(card).find(data.target.title).text(p.fields.summary ? p.fields.summary : "Not set");
-                            $(card).addClass(data.color[p.fields.priority.id]);
-                            //$(card).find(".content").html(cont);
-                            var assignee = p.fields.assignee ? p.fields.assignee.displayName.trim() : "-";
-                            $(card).find(data.target.footer_r).text(assignee);
-                            $(appento).append(card);
+                            var cont = [initials.toString().toLowerCase() + ".png", p.fields.project.name];
+                            var data_for_card = [p.fields.summary ? p.fields.summary : "Not set",
+                                data.color[p.fields.priority.id], cont,
+                                p.fields.customfield_10021 ? p.fields.customfield_10021 : "-", initials
+                            ];
+                            data.place_card(card, data_for_card, appento);
                         }
                     });
                     c = c + 1;
@@ -102,11 +100,9 @@ var data = {
                     var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                     var asa = assignee !== '-' ? assignee.split(" ") : "";
                     var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
-                    var cont = (post.fields.assignee ?
-                            "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
-                            initials.toString().toLowerCase() + ".png'/>" : "") +
-                        "<p class='w3-center'>" + post.fields.project.name + "</p>";
-
+                    var cont = [initials.toString().toLowerCase() + ".png",
+                        post.fields.project.name
+                    ];
                     var data_for_card = [post.fields.summary ? post.fields.summary : "Not set",
                         data.color[post.fields.priority.id], cont,
                         post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials

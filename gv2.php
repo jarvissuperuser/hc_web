@@ -2,12 +2,13 @@
 
 $c = curl_init();
 
+$url2 = "https://tmgdigital.atlassian.net/rest/api/2/myself";
 $url = "https://tmgdigital.atlassian.net/rest/api/2/search?RapidViewId=2&maxResults=200&jql=issuetype!=Epic%20AND%20status!=done";
 try{
 
 //$cmd  =  file_get_contents('info.ini');
 //echo shell_exec($cmd);
-curl_setopt($c, CURLOPT_URL,$url);
+curl_setopt($c, CURLOPT_URL,$url2);
 $auth =  file_get_contents("auth.ini");
 
 $post = ['startAt'=>'0','maxresults'=>'200'];

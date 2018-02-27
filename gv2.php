@@ -12,7 +12,7 @@ curl_setopt($c, CURLOPT_URL,$url2);
 $auth =  file_get_contents("auth.ini");
 
 $post = ['startAt'=>'0','maxresults'=>'200'];
-$hA = "Authorization : BASIC $auth";
+$hA = "Authorization: Basic $auth";
 $hA2 =  "Content-Type : application/json";
 //curl_setopt($c,CURLOPT_CUSTOMREQUEST,'GET');
 //$hA3 =  "Content-Length: ".strlen(json_encode($post));

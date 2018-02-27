@@ -166,6 +166,6 @@ var data = {
         $(card).find(data.target.content).html(dt[2]);
         $(card).find(data.target.footer_l).text(dt[3]);
         $(card).find(data.target.footer_r).text(dt[4]);
-        $(appento).append(appendto);
+        $(appendto).append(card);
     }
 }

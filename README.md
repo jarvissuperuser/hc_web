@@ -25,7 +25,7 @@ the basic authentication is the base64 encoding of
 
 ### using the app
 
-issuetypes are defined primarily into 2, Tasks and SubTasks.
+issuetypes are defined primarily into 3 which are Tasks, SubTasks and Tasks with out Points allocated.
 
 additional filter include Progress Statuses
 
@@ -40,7 +40,7 @@ the input textbox ` starting point ` changes the index of the task
 
 and input textbox ` ending point ` changes the amount of tasks to be displayed
 
-#### printing tasks and subtasks
+## printing tasks and subtasks
 
 > Settings
 

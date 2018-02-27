@@ -124,7 +124,7 @@ var data = {
         );
 
     },
-    color: ["w3-grey", "w3-dark-grey", "w3-orange", "w3-pink", "w3-red", ""],
+    color: ["w3-green", "w3-green", "w3-yellow", "w3-red", "w3-red", ""],
     tags: {
         todo: ["10300", "10000"],
         inpr: ["3"],

@@ -1,7 +1,7 @@
 var data = {
     target: {
         title: ".title h2 p",
-        content: ".content",
+        content: [".content img", ".content p"],
         footer_l: ".footer h4.w3-left",
         footer_r: ".footer h4.w3-right"
     },
@@ -31,31 +31,25 @@ var data = {
                     var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                     var asa = assignee !== '-' ? assignee.split(" ") : "";
                     var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
-                    var cont = (post.fields.assignee ?
-                            "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
-                            initials.toString().toLowerCase() + ".png'/>" : "") +
-                        "<p class='w3-center'>" + post.fields.project.name + "</p>";
+                    var cont = [initials.toString().toLowerCase() + ".png",
+                        post.fields.project.name
+                    ];
                     var data_for_card = [post.fields.summary ? post.fields.summary : "Not set",
-                        data.color[post.fields.priority.id],
-                        cont,
-                        post.fields.customfield_10021 ? post.fields.customfield_10021 : "-",
-                        assignee
+                        data.color[post.fields.priority.id], cont,
+                        post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
                     ];
                     data.place_card(card, data_for_card, appento);
                 } else if (post.fields.issuetype.name === "Epic" && post.fields.subtasks.length > 0) {
                     var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                     var asa = assignee !== '-' ? assignee.split(" ") : "";
                     var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
-                    var cont = (post.fields.assignee ?
-                            "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
-                            initials.toString().toLowerCase() + ".png'/>" : "") +
-                        "<p class='w3-center'>" + post.fields.project.name + "</p>";
+                    var cont = [initials.toString().toLowerCase() + ".png",
+                        post.fields.project.name
+                    ];
 
                     var data_for_card = [post.fields.summary ? post.fields.summary : "Not set",
-                        data.color[post.fields.priority.id],
-                        cont,
-                        post.fields.customfield_10021 ? post.fields.customfield_10021 : "-",
-                        assignee
+                        data.color[post.fields.priority.id], cont,
+                        post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
                     ];
                     data.place_card(card, data_for_card, appento);
                     $(appento).append(card);
@@ -113,9 +107,9 @@ var data = {
                             initials.toString().toLowerCase() + ".png'/>" : "") +
                         "<p class='w3-center'>" + post.fields.project.name + "</p>";
 
-                    var data_for_card = [
-                        post.fields.summary ? post.fields.summary : "Not set", data.color[post.fields.priority.id],
-                        cont, post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", assignee
+                    var data_for_card = [post.fields.summary ? post.fields.summary : "Not set",
+                        data.color[post.fields.priority.id], cont,
+                        post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
                     ];
                     data.place_card(card, data_for_card, appento);
                 }
@@ -163,7 +157,8 @@ var data = {
     place_card: function(card, dt, appendto) {
         $(card).find(data.target.title).text(dt[0]);
         $(card).addClass(dt[1]);
-        $(card).find(data.target.content).html(dt[2]);
+        $(card).find(data.target.content[0]).attr('src', dt[2][0]);
+        $(card).find(data.target.content[1]).text(dt[2][1]);
         $(card).find(data.target.footer_l).text(dt[3]);
         $(card).find(data.target.footer_r).text(dt[4]);
         $(appendto).append(card);

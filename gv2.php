@@ -15,7 +15,7 @@ $hA = "Authorization: BASIC $auth";
 $hA2 =  "Content-Type: application/json";
 //curl_setopt($c,CURLOPT_CUSTOMREQUEST,'GET');
 //$hA3 =  "Content-Length: ".strlen(json_encode($post));
-//curl_setopt($c,CURLOPT_HTTPHEADER,[$hA,$hA2]);
+curl_setopt($c,CURLOPT_HTTPHEADER,[$hA,$hA2]);
 curl_setopt($c,CURLOPT_HEADER,0);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 //curl_setopt($c,CURLOPT_POSTFIELDS,json_encode($post));

@@ -3,7 +3,7 @@
 $c = curl_init();
 
 $url2 = "https://tmgdigital.atlassian.net/rest/api/2/myself";
-$url = "https://tmgdigital.atlassian.net/rest/api/2/search?RapidViewId=2&maxResults=40&jql=issuetype!=Epic%20AND%20issuetype=!=subtasks%20AND%20status!=done";
+$url = "https://tmgdigital.atlassian.net/rest/api/2/search?RapidViewId=2&maxResults=40&jql=issuetype!=Epic%20AND%20issuetype=!=subtask%20AND%20status!=done";
 try{
 
 //$cmd  =  file_get_contents('info.ini');

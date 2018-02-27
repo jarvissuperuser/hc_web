@@ -1,4 +1,10 @@
 var data = {
+    target: {
+        title: ".title h2 p",
+        content: ".content",
+        footer_l: ".footer h4.w3-left",
+        footer_r: ".footer h4.w3-right"
+    },
     d: undefined,
     cards: undefined,
     do_: function(start, dtyp, t, end) {
@@ -29,14 +35,13 @@ var data = {
                             "<img class='w3-circle xxxsmall w3-right w3-margin-right' src='" +
                             initials.toString().toLowerCase() + ".png'/>" : "") +
                         "<p class='w3-center'>" + post.fields.project.name + "</p>";
-
-                    $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
-                    $(card).addClass(data.color[post.fields.priority.id]);
-                    $(card).find(".content").html(cont);
-                    $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
-                    $(card).find(".footer h4.w3-right").text(assignee);
-                    $(appento).append(card);
-                    c = c + 1;
+                    var data_for_card = [post.fields.summary ? post.fields.summary : "Not set",
+                        data.color[post.fields.priority.id],
+                        cont,
+                        post.fields.customfield_10021 ? post.fields.customfield_10021 : "-",
+                        assignee
+                    ];
+                    data.place_card(card, data_for_card, appento);
                 } else if (post.fields.issuetype.name === "Epic" && post.fields.subtasks.length > 0) {
                     var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                     var asa = assignee !== '-' ? assignee.split(" ") : "";
@@ -46,11 +51,13 @@ var data = {
                             initials.toString().toLowerCase() + ".png'/>" : "") +
                         "<p class='w3-center'>" + post.fields.project.name + "</p>";
 
-                    $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
-                    $(card).addClass(data.color[post.fields.priority.id]);
-                    $(card).find(".content").html(cont);
-                    $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
-                    $(card).find(".footer h4.w3-right").text(assignee);
+                    var data_for_card = [post.fields.summary ? post.fields.summary : "Not set",
+                        data.color[post.fields.priority.id],
+                        cont,
+                        post.fields.customfield_10021 ? post.fields.customfield_10021 : "-",
+                        assignee
+                    ];
+                    data.place_card(card, data_for_card, appento);
                     $(appento).append(card);
                     console.log("Epic", card);
                     c = c + 1;
@@ -78,11 +85,11 @@ var data = {
                     sub.forEach(p => {
                         if (data.filter_tags(tag, p.fields.status.id)) {
                             card = $(data.card).clone(true);
-                            $(card).find(".title h3 p").text(p.fields.summary ? p.fields.summary : "Not set");
+                            $(card).find(data.target.title).text(p.fields.summary ? p.fields.summary : "Not set");
                             $(card).addClass(data.color[p.fields.priority.id]);
-                            $(card).find(".content").html(cont);
+                            //$(card).find(".content").html(cont);
                             var assignee = p.fields.assignee ? p.fields.assignee.displayName.trim() : "-";
-                            $(card).find(".footer h4.w3-right").text(assignee);
+                            $(card).find(data.target.footer_r).text(assignee);
                             $(appento).append(card);
                         }
                     });
@@ -106,13 +113,11 @@ var data = {
                             initials.toString().toLowerCase() + ".png'/>" : "") +
                         "<p class='w3-center'>" + post.fields.project.name + "</p>";
 
-                    $(card).find(".title h3 p").text(post.fields.summary ? post.fields.summary : "Not set");
-                    $(card).addClass(data.color[post.fields.priority.id]);
-                    $(card).find(".content").html(cont);
-                    $(card).find(".footer h4.w3-left").text(post.fields.customfield_10021 ? post.fields.customfield_10021 : "-");
-                    $(card).find(".footer h4.w3-right").text(assignee);
-                    $(appento).append(card);
-                    c = c + 1;
+                    var data_for_card = [
+                        post.fields.summary ? post.fields.summary : "Not set", data.color[post.fields.priority.id],
+                        cont, post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", assignee
+                    ];
+                    data.place_card(card, data_for_card, appento);
                 }
             }
         }
@@ -154,6 +159,13 @@ var data = {
                 });
                 return ret;
         }
-
+    },
+    place_card: function(card, data, appendto) {
+        $(card).find(data.target.title).text(data[0]);
+        $(card).addClass(data[1]);
+        $(card).find(data.target.content).html(data[2]);
+        $(card).find(data.target.footer_l).text(data[3]);
+        $(card).find(data.target.footer_r).text(data[4]);
+        $(appento).append(appendto);
     }
 }

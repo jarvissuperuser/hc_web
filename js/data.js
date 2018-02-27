@@ -152,7 +152,7 @@ var data = {
         }
     },
     place_card: function(card, dt, appendto) {
-        $(card).find(data.target.title).text(dt[0]);
+        $(card).find(data.target.title).html(dt[0]);
         $(card).addClass(dt[1]);
         $(card).find(data.target.content[0]).attr('src', dt[2][0]);
         $(card).find(data.target.content[1]).text(dt[2][1]);

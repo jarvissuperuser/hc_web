@@ -19,7 +19,7 @@ curl_setopt($c,CURLOPT_HTTPHEADER,[$hA,$hA2]);
 //curl_setopt($c,CURLOPT_HEADER,0);
 // curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
 //curl_setopt($c,CURLOPT_POSTFIELDS,json_encode($post));
-echo curl_exec($c);
+curl_exec($c);
 //echo  $hA;
 }
 catch(Exception $e){

@@ -60,6 +60,7 @@ var data = {
                 var card = $(data.card).clone(true);
                 post = data.d.issues[a];
                 var pointer = c % 5;
+                var appento = ".sec_0";
                 var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                 $(card).find(".footer h4.w3-right").text(assignee);
                 if (post.fields.subtasks.length > 0) {

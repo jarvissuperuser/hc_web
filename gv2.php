@@ -17,7 +17,7 @@ $hA2 =  "Content-Type: application/json";
 //$hA3 =  "Content-Length: ".strlen(json_encode($post));
 curl_setopt($c,CURLOPT_HTTPHEADER,[$hA,$hA2]);
 curl_setopt($c,CURLOPT_HEADER,0);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
 //curl_setopt($c,CURLOPT_POSTFIELDS,json_encode($post));
 curl_exec($c);
 //echo  $hA;

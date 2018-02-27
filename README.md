@@ -40,7 +40,7 @@ the input textbox ` starting point ` changes the index of the task
 
 and input textbox ` ending point ` changes the amount of tasks to be displayed
 
-#### printing the app
+#### printing tasks and subtasks
 
 > Settings
 

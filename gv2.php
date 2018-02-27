@@ -11,8 +11,8 @@ curl_setopt($c, CURLOPT_URL,$url);
 $auth =  file_get_contents("auth.ini");
 
 $post = ['startAt'=>'0','maxresults'=>'200'];
-$hA = "Authorization: BASIC $auth";
-$hA2 =  "Content-Type: application/json";
+$hA = "Authorization : BASIC $auth";
+$hA2 =  "Content-Type : application/json";
 //curl_setopt($c,CURLOPT_CUSTOMREQUEST,'GET');
 //$hA3 =  "Content-Length: ".strlen(json_encode($post));
 curl_setopt($c,CURLOPT_HTTPHEADER,[$hA,$hA2]);

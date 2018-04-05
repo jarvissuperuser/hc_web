@@ -26,8 +26,7 @@ var data = {
                 var card = $(data.card).clone(true);
                 post = data.d.issues[a];
                 var pointer = c / 5;
-                var appento = ".sec_0"; // + Math.floor(pointer).toString();
-                //TODO: filter By Tag
+                var appento = ".sec_0";
                 if (data.filter_tags(tag, post.fields.status.id) && post.fields.customfield_10021 !== null) {
                     var data_for_card = data.data_card(post);
                     data.place_card(card, data_for_card, appento);
@@ -65,7 +64,6 @@ var data = {
                 post = data.d.issues[a];
                 var pointer = c / 5;
                 var appento = ".sec_0"; // + Math.floor(pointer).toString();
-                //TODO: filter By Tag
                 if (data.filter_tags(tag, post.fields.status.id) && post.fields.customfield_10021 === null) {
                     var data_for_card = data.data_card(post);
                     data.place_card(card, data_for_card, appento);
@@ -122,6 +120,8 @@ var data = {
     },
     subtask_detailer(){
         data.subtask = {};
+        //TODO : move to single request, compare performance, error handle
+        //multi web requests
         data.d.issues.forEach((i)=>{
             i.fields.subtasks.forEach((s)=>{
                 $.getJSON("gv2.php?option=targeted&destination="+encodeURI(s.self),(res)=>{
@@ -130,6 +130,11 @@ var data = {
                 
             });
         });
+        //single web request
+        /*$.getJSON("gv2.php?option=subtask&destination=",(res)=>{
+                   //Object.defineProperty(data.subtask,res.id,{value:res,writable:true});
+            console.log(res);
+        });*/
     },
     data_card(post){
         var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";

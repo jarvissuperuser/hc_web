@@ -64,11 +64,13 @@ var data = {
                     sub.forEach(p => {
                         if (data.filter_tags(tag, p.fields.status.id)) {
                             card = $(data.card).clone(true);
+                            $(card).attr("id",p.id);
                             var cont = [initials.toString().toLowerCase() + ".png", post.fields.project.name];
                             var data_for_card = [p.fields.summary ? p.fields.summary : "Not set",
                                 data.color[p.fields.priority.id], cont,
                                 p.fields.customfield_10021 ? p.fields.customfield_10021 : "-", initials
                             ];
+                            subtask_detail(p.self);
                             data.place_card(card, data_for_card, appento);
                         }
                     });
@@ -145,5 +147,8 @@ var data = {
         $(card).find(data.target.footer_l).text(dt[3]);
         $(card).find(data.target.footer_r).text(dt[4]);
         $(appendto).append(card);
+    },
+    subtask_detailer(url){
+        
     }
 }

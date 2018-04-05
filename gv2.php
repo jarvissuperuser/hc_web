@@ -1,6 +1,7 @@
 <?php
 
 $c = curl_init();
+
 $jql="project%20in%20(TD,%20HL,%20ST,%20BMM,%20ADF,%20ADOPS,%20BDTV,%20BLAC".
 ",%20BOOK,%20DB,%20BSS,%20BUS,%20CR,%20COS,%20DIS,%20DS,%20FM,%20HEL,%20HR,".
 "%20IG,%20%22IN%22,%20ISS,%20MAG,%20MAR,%20MIMS,%20NEW,%20RDM,%20RED,%20SHO,".
@@ -13,11 +14,38 @@ $url = "https://tmgdigital.atlassian.net/rest/api/2/search?maxResults=100&".
 "jql=$jqlIssFilter" . 
 "%20AND%20{$jqlStaFilter}%20AND%20".
 "$jql";
+
+$customJql =  urlencode(filter_input(INPUT_POST,"customjql"));
+$urlCustomJql="https://tmgdigital.atlassian.net/rest/api/2/search?jql=$customJql";
+
+$jqlSubFilter = "(issueType=10104)"; 
+$urlSubTasks= "https://tmgdigital.atlassian.net/rest/api/2/search?maxResults=100&".
+"jql=$jqlSubFilter" . 
+"%20AND%20{$jqlStaFilter}%20AND%20".
+"$jql";
+
+$urlDirect = filter_input(INPUT_GET,"destination");
 try{
 
 //$cmd  =  file_get_contents('info.ini');
 //echo shell_exec($cmd);
-curl_setopt($c, CURLOPT_URL,$url);
+switch(filter_input(INPUT_GET,"option")){
+    case "task":
+        curl_setopt($c, CURLOPT_URL,$url);
+        break;
+    case "subtask":
+        curl_setopt($c, CURLOPT_URL,$urlSubTasks);
+        break;
+    case "custom":
+        curl_setopt($c, CURLOPT_URL,$urlCustomJql);
+        break;
+    case "targeted":
+        curl_setopt($c, CURLOPT_URL,$urlDirect);
+        break;
+    default:
+        curl_setopt($c, CURLOPT_URL,$url);
+    
+}
 $auth =  file_get_contents("auth.ini");
 
 $post = ['startAt'=>'0','maxresults'=>'200'];

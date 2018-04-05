@@ -101,9 +101,10 @@
             <div class="w3-card-4 ">
                 <div class="w3-container w3-black">
                     <h3>Page Controls</h3>
+                    <div class="status"></div>
                 </div>
                 <div class="w3-content w3-teal">
-                    <label for="issueType">Options</label>
+                    <label for="issueType">Filters</label>
                     <select name="issueType" class="w3-select">
                                 <option value="Tasks">Tasks</option>
                                 <option value="subtasks">Sub-Tasks</option>
@@ -155,6 +156,13 @@
     <script src="js/button.js"></script>
     <script>
         $(document).ready(function() {
+            $(document).ajaxStart(function(){
+                $(".status").addClass("w3-red");
+                $(".status").text("Please Wait While Loading...");
+            });
+            $(document).ajaxStop(function(){
+                $(".status").text("Ready");
+            });
             try {
                 pull();
             } catch (ex) {
@@ -183,8 +191,12 @@
                 data.d = res;
                 btn.create_cherries();
                 data.do_();
+                data.subtask_detailer();
             });
         }
+        /**
+        *@deprecated
+        */
         function subtask_detail(url){
             $.getJSON("gv2.php?option=targeted&destination="+encodeURI(url),function(res){
                 var post = res;

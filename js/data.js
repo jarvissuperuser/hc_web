@@ -7,6 +7,7 @@ var data = {
     },
     d: undefined,
     cards: undefined,
+    subtask: undefined,
     do_: function(start, dtyp, t, end) {
         // **  setup
         $("section").empty();
@@ -28,16 +29,7 @@ var data = {
                 var appento = ".sec_0"; // + Math.floor(pointer).toString();
                 //TODO: filter By Tag
                 if (data.filter_tags(tag, post.fields.status.id) && post.fields.customfield_10021 !== null) {
-                    var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
-                    var asa = assignee !== '-' ? assignee.split(" ") : "";
-                    var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
-                    var cont = [initials.toString().toLowerCase() + ".png",
-                        post.fields.project.name
-                    ];
-                    var data_for_card = [post.fields.summary ? post.fields.summary.toString() : "Not set",
-                        data.color[post.fields.priority.id], cont,
-                        post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
-                    ];
+                    var data_for_card = data.data_card(post);
                     data.place_card(card, data_for_card, appento);
                 }
             }
@@ -50,27 +42,16 @@ var data = {
                 var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
                 $(card).find(".footer h4.w3-right").text(assignee);
                 if (post.fields.subtasks.length > 0) {
-                    var asa = assignee !== '-' ? assignee.split(" ") : "";
-                    var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
-                    var cont = [initials.toString().toLowerCase(), post.fields.project.name];
-                    var appento = ".sec_0"; // + Math.floor(pointer).toString();
-                    var cont = [initials.toString().toLowerCase() + ".png", post.fields.project.name];
-                    var data_for_card = [post.fields.summary ? post.fields.summary : "Not set",
-                        "", cont,
-                        post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
-                    ];
+                    var data_for_card = data.data_card(post);
+                    data_for_card[1]="";
                     data.place_card(card, data_for_card, appento);
                     var sub = post.fields.subtasks;
                     sub.forEach(p => {
                         if (data.filter_tags(tag, p.fields.status.id)) {
                             card = $(data.card).clone(true);
                             $(card).attr("id",p.id);
-                            var cont = [initials.toString().toLowerCase() + ".png", post.fields.project.name];
-                            var data_for_card = [p.fields.summary ? p.fields.summary : "Not set",
-                                data.color[p.fields.priority.id], cont,
-                                p.fields.customfield_10021 ? p.fields.customfield_10021 : "-", initials
-                            ];
-                            subtask_detail(p.self);
+                            var data_for_card = data.data_card(data.subtask[p.id]);
+                            //subtask_detail(p.self);
                             data.place_card(card, data_for_card, appento);
                         }
                     });
@@ -86,16 +67,7 @@ var data = {
                 var appento = ".sec_0"; // + Math.floor(pointer).toString();
                 //TODO: filter By Tag
                 if (data.filter_tags(tag, post.fields.status.id) && post.fields.customfield_10021 === null) {
-                    var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
-                    var asa = assignee !== '-' ? assignee.split(" ") : "";
-                    var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
-                    var cont = [initials.toString().toLowerCase() + ".png",
-                        post.fields.project.name
-                    ];
-                    var data_for_card = [post.fields.summary ? post.fields.summary.toString() : "Not set",
-                        data.color[post.fields.priority.id], cont,
-                        post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
-                    ];
+                    var data_for_card = data.data_card(post);
                     data.place_card(card, data_for_card, appento);
                 }
             }
@@ -148,7 +120,26 @@ var data = {
         $(card).find(data.target.footer_r).text(dt[4]);
         $(appendto).append(card);
     },
-    subtask_detailer(url){
-        
+    subtask_detailer(){
+        data.subtask = {};
+        data.d.issues.forEach((i)=>{
+            i.fields.subtasks.forEach((s)=>{
+                $.getJSON("gv2.php?option=targeted&destination="+encodeURI(s.self),(res)=>{
+                   Object.defineProperty(data.subtask,res.id,{value:res,writable:true}); 
+                });
+                
+            });
+        });
+    },
+    data_card(post){
+        var assignee = post.fields.assignee ? post.fields.assignee.displayName.trim() : "-";
+        var asa = assignee !== '-' ? assignee.split(" ") : "";
+        var initials = assignee !== '-' ? asa[0][0] + asa[asa.length - 1][0] : "";
+        var appento = ".sec_0"; // + Math.floor(pointer).toString();
+        var cont = [initials.toString().toLowerCase() + ".png", post.fields.project.name];
+       return [post.fields.summary ?  post.fields.summary.toString() : "Not set",
+            data.color[post.fields.priority.id], cont,
+            post.fields.customfield_10021 ? post.fields.customfield_10021 : "-", initials
+        ];
     }
 }
